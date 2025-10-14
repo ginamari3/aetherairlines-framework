@@ -37,6 +37,11 @@ TABLE OF CONTENTS
     # CUSTOM HERO STYLING
     # CUSTOM PAGE LAYOUT - 2 COLUMNS: ASIDE + MAIN CONTENT
     # STICKYBOX
+    # NMA TYPE BLOCK
+
+# ANIMATIONS
+    # REGULAR ON PAGE LOAD ANIMATIONS
+    # SCROLL-TRIGGERED ANIMATIONS
 
 ----------------------- */
 
@@ -52,11 +57,12 @@ TABLE OF CONTENTS
     --color-black: #000;
     --color-black-80: rgb(0 0 0 / .8);
 
-    --color-grey-100: rgb(0 0 0 / .1);
+    --color-grey-100: rgb(0 0 0 / .05);
     --color-grey-200: rgb(0 0 0 / .2);
 
     --color-blue-100: #dbeafe;
     --color-blue-400: #3b82f6;
+    --color-blue-800: #3654a8;
     --color-blue-900: #294491;
 
     --color-green-100: #d1fae5;
@@ -76,13 +82,13 @@ TABLE OF CONTENTS
     --color-secondary: var(--color-green-400);
 
     /* ACTION COLORS */
-    --color-links: var(--color-blue-400);
+    --color-links: var(--color-blue-800);
     --color-links-hover: var(--color-blue-900);
     --color-links-light: var(--color-blue-100);
 
     /* SECTION SPECIFIC */
     --color-siteheader-background: transparent;
-    --color-siteheader-links: var(--color-blue-400);
+    --color-siteheader-links: var(--color-blue-800);
     --color-siteheader-links-hover: var(--color-blue-900);
     --color-sitefooter-background: var(--color-grey-100);
     --color-hero-background: var(--color-blue-100);
@@ -536,13 +542,13 @@ html {
     }
 
     /* ENABLE SVG ANIMATION FOR THE NAVICON */
-    .site-nav .simple-navicon rect {
+    .site-nav svg.simple-navicon rect {
         transition: all .3s ease-out;
         fill: var(--color-primary);
     }
 
     /* CHANGE COLOR OF THE SVG NAVICON WHEN MENU IS OPEN */
-    .site-nav[data-menustate="open"] .simple-navicon rect {
+    .site-nav[data-menustate="open"] svg.simple-navicon rect {
         fill: var(--color-white);
     }
 
@@ -736,3 +742,109 @@ body>* {
         top: var(--unit-m);
     }
 }
+
+/* NMA TYPE BLOCK */
+
+.nma-eyebrow {
+    font-size: .875rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    opacity: .5;
+    line-height: 1;
+}
+
+.nma-headline {
+    font-size: 3rem;
+    margin-block: var(--unit-s);
+    line-height: 1.1;
+}
+
+.nma-subheadline {
+    font-size: 1.5rem;
+    font-weight: 400;
+    font-style: italic;
+    margin-block: var(--unit-xs);
+    opacity: .7;
+    line-height: 1.2;
+}
+
+
+/* ------------------
+        ANIMATIONS 
+--------------------- */
+
+/* REGULAR ON PAGE LOAD ANIMATIONS */
+
+.slide-from-top-and-fade-in {
+    animation-name: slide-from-top-and-fade-in;
+    animation-duration: 1s;
+    animation-timing-function: cubic-bezier(0, .5, .5, 1);
+    animation-fill-mode: forwards;
+    opacity: 0;
+    translate: 0 -40px;
+}
+
+@keyframes slide-from-top-and-fade-in {
+    0% {
+        opacity: 0;
+        translate: 0 -40px;
+    }
+
+    100% {
+        opacity: 1;
+        translate: 0 0;
+    }
+}
+
+
+.slide-from-left-and-fade-in {
+    animation-name: slide-from-left-and-fade-in;
+    animation-duration: 2s;
+    animation-timing-function: cubic-bezier(0, 1, 0, 1);
+    animation-fill-mode: forwards;
+    opacity: 0;
+    translate: -20px 0;
+}
+
+@keyframes slide-from-left-and-fade-in {
+    0% {
+        opacity: 0;
+        translate: -20px 0;
+    }
+
+    100% {
+        opacity: 1;
+        translate: 0 0;
+    }
+}
+
+.delay-0 {
+    animation-delay: 0s;
+}
+
+.delay-1 {
+    animation-delay: 0.1s;
+}
+
+.delay-2 {
+    animation-delay: 0.2s;
+}
+
+.delay-3 {
+    animation-delay: 0.3s;
+}
+
+.delay-4 {
+    animation-delay: 0.5s;
+}
+
+.delay-5 {
+    animation-delay: 0.7s;
+}
+
+.delay-6 {
+    animation-delay: 0.9s;
+}
+
+
+/* SCROLL-TRIGGERED ANIMATION */

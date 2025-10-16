@@ -1,4 +1,4 @@
-# southwest-framework
-My Art 258 framework for the redesign of the Southwest Airlines website.
+# aetherairlines-framework
+My Art 258 framework for the website designs of Aether Airlines.
 
-(My site)[https://ginamari3.github.io/southwest-framework/]
+(My site)[https://ginamari3.github.io/aetherairlines-framework/]

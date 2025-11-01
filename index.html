@@ -2,175 +2,308 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Aether Airlines — Home</title>
 
-    <title>Simple Base</title>
-    <meta name="description" content="A simple HTML CSS and JS starter base">
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@500;700&display=swap"
+        rel="stylesheet">
 
-    <!-- MAIN CSS -->
+    <!-- Main CSS -->
     <link rel="stylesheet" href="css/style.css">
-
-
 </head>
 
 <body>
 
-    <header class="site-header">
-        <div class="logo">
-            <img src="img/1-aetherairlines-title-logo.png" alt="" height="50" width="200">
+    <!-- NAVIGATION (integrated from your provided markup) -->
+    <header>
+        <nav class="navbar" aria-label="Main navigation">
+            <div class="logo">
+                <h1>AETHER <span>AIRLINES</span></h1>
+            </div>
 
-            <!-- INLINE SVG LOGO EXAMPLE -->
-            <!-- <?xml version="1.0" encoding="UTF-8"?>
-            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 173.45 63.88">
-                <defs>
-                    <style>
-                        .cls-1 {
-                            fill: #0085ac;
-                            font-family: NHaasGroteskDSPro-95Blk, 'Neue Haas Grotesk Display Pro';
-                            font-size: 14.22px;
-                            letter-spacing: .1em;
-                        }
+            <button class="menu-toggle" aria-expanded="false" aria-label="Open menu">☰</button>
 
-                        .cls-2 {
-                            fill: #1c2e5a;
-                            font-family: NHaasGroteskDSPro-25Th, 'Neue Haas Grotesk Display Pro';
-                            font-size: 48.1px;
-                        }
-                    </style>
-                </defs>
-                <text class="cls-2" transform="translate(0 41.25)">
-                    <tspan x="0" y="0">AETHER</tspan>
-                </text>
-                <text class="cls-1" transform="translate(48.97 60.14)">
-                    <tspan x="0" y="0">AIRLINES</tspan>
-                </text>
-            </svg> -->
-
-
-            <!-- INLINE IMG LOGO EXAMPLE -->
-            <!-- <a href="index.html"><img src="img/simplebase-logo-black.png" alt="Simple Base Logo" width="200" height="50"></a> -->
-
-            <h1 class="hide-visuallyx"><a href="index.html">Aether Airlines</a></h1>
-        </div>
-        </div>
-
-        <nav class="site-nav" data-menustate="closed">
-            <button class="menubutton">
-                <span class="hide-visually">Menu</span>
-                <svg class="simple-navicon" width="24" height="21">
-                    <rect class="simple-navicon-top" x="0" y="2" height="3" width="30"></rect>
-                    <rect class="simple-navicon-middle" x="0" y="9" height="3" width="30"></rect>
-                    <rect class="simple-navicon-bottom" x="0" y="16" height="3" width="30"></rect>
-                </svg>
-            </button>
-            <ul>
-                <li class="slide-from-top-and-fade-in delay-5"><a href="index.html">Home</a></li>
-                <li class="slide-from-top-and-fade-in delay-6"><a href="styleguide.html">Style Guide</a></li>
+            <ul class="nav-links" role="menubar">
+                <li role="none"><a role="menuitem" href="#booking">Book</a></li>
+                <li role="none"><a role="menuitem" href="#destinations">Destinations</a></li>
+                <li role="none"><a role="menuitem" href="#mytrips">My Trips</a></li>
             </ul>
+
+            <div class="search-signup">
+                <div class="search-box" aria-hidden="false">
+                    <input type="text" aria-label="Search destinations" placeholder="Search destinations" />
+                    <button class="search-btn" aria-label="Search">🔍</button>
+                </div>
+                <button class="signup-btn">Sign Up</button>
+            </div>
         </nav>
-
-
-
     </header>
 
-    <main class="site-main">
-
-        <section class="hero text-centered">
-
-            <h1 class="slide-from-top-and-fade-in delay-0">Study Design & Animation</h1>
-            <h2 class="slide-from-top-and-fade-in delay-1">Subheader Goes Here</h2>
-            <p class="slide-from-top-and-fade-in delay-2">This is the framework for my NMA website redesign project for
-                ART 258.</p>
-            <a href="#features" class="button slide-from-top-and-fade-in delay-3">See Features</a>
-
-        </section>
-
-        <section id="features">
-            <div class="container">
-
-                <div class="row">
-                    <div class="one-half">
-                        <img class="observe-me onscroll-slide-in-from-left" src="img/placeholder-2000x1000.gif"
-                            alt="Placeholder image" width="2000" height="1000">
-                    </div>
-                    <div class="one-half">
-                        <h2 class="observe-me onscroll-slide-in-from-right delay-4">Image on the Left, Text on the Right
-                        </h2>
-                        <p class="observe-me onscroll-slide-in-from-right delay-6">This column is rending via the
-                            default normal flow. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, fugit
-                            reprehenderit nobis eum modi ex.</p>
+    <!-- HERO -->
+    <main>
+        <section class="hero">
+            <div class="hero-inner container">
+                <div class="hero-content">
+                    <p class="pronounce">/ˈēTHər/ (Aether)</p>
+                    <h1>Crafted comfort, elevated service</h1>
+                    <p class="lead">Luxury travel that considers every detail, from arrival to departure.</p>
+                    <div class="hero-actions">
+                        <a class="btn primary" href="#booking">Plan Your Trip</a>
+                        <a class="btn ghost" href="#memberships">View Memberships</a>
                     </div>
                 </div>
-
+                <!-- (Optional) remove this whole aside; hero now a clean banner -->
+                <aside class="hero-aside"></aside>
             </div>
         </section>
 
-        <section>
+        <!-- FLIGHT SEARCH BAR (static, responsive) — now BELOW the hero -->
+        <section class="ab-search">
             <div class="container">
+                <div class="ab-card" aria-label="Flight search">
+                    <div class="ab-grid">
+                        <!-- LEFT: HNL ↔ TO (1/3) -->
+                        <div class="ab-iata">
+                            <div class="ab-iata-row">
+                                <div class="ab-code">HNL</div>
+                                <div class="ab-swap" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M7 7h11m0 0-3-3m3 3-3 3M17 17H6m0 0 3-3m-3 3 3 3" />
+                                    </svg>
+                                </div>
+                                <div class="ab-code">TO</div>
+                            </div>
+                            <div class="ab-cities">
+                                <span>Honolulu, HI</span>
+                                <span>Your Destination</span>
+                            </div>
+                        </div>
 
-                <div class="row swapped">
-                    <div class="one-half">
-                        <img src="img/placeholder-2000x1000.gif" alt="Placeholder image" width="2000" height="1000">
+                        <!-- RIGHT: Tabs + Search (2/3) -->
+                        <nav class="ab-controls" aria-label="Flight search controls">
+                            <div class="ab-tab">Round Trip <span class="ab-caret">v</span></div>
+                            <div class="ab-tab ab-tab-dates">
+                                Depart <span class="ab-dash">—</span> Return
+                                <span class="ab-cal" aria-hidden="true">📅</span>
+                            </div>
+                            <div class="ab-tab">1 Passenger <span class="ab-caret">v</span></div>
+                            <button class="ab-btn-search" type="button" aria-label="Search">Search</button>
+                        </nav>
                     </div>
-                    <div class="one-half">
-                        <h2>Image on the Right, Text on the Left</h2>
-                        <p>This column is rending via the default normal flow. Lorem ipsum dolor sit amet consectetur
-                            adipisicing elit. Dolorum, fugit reprehenderit nobis eum modi ex.</p>
+
+                    <!-- SEARCH OPTIONS (inside the same card) -->
+                    <div class="ab-options">
+                        <div class="ab-options-title">SEARCH OPTIONS</div>
+                        <label class="ab-check"><input type="checkbox" /> <span>Shop with Miles</span></label>
+                        <label class="ab-check"><input type="checkbox" /> <span>Refundable Fares Only</span></label>
+                        <label class="ab-check"><input type="checkbox" /> <span>My dates are flexible</span></label>
                     </div>
                 </div>
-
             </div>
         </section>
 
-        <section>
-            <div class="container">
+        <!-- MEMBERSHIPS -->
+        <section id="memberships" class="memberships container">
+            <h2 class="section-title">Aether Memberships</h2>
+            <p class="section-sub">Subtle luxury for frequent travelers</p>
 
-                <div class="row">
-                    <div class="one-half centered">
-                        <img src="img/placeholder-2000x1000.gif" alt="Placeholder image" width="2000" height="1000">
-                        <h2>A Centered Column</h2>
-                        <p>This column is rending via the default normal flow. Lorem ipsum dolor sit amet consectetur
-                            adipisicing elit. Dolorum, fugit reprehenderit nobis eum modi ex.</p>
+            <div class="membership-cards" role="list">
+                <div class="m-card active" data-name="Gold" role="listitem" tabindex="0">
+                    <img src="https://media.cnn.com/api/v1/images/stellar/prod/190227114840-gensler-star-alliance-lounge-1.jpg?q=w_1200,h_700,c_fill"
+                        alt="Gold lounge">
+                    <div class="m-overlay">
+                        <h3>Gold</h3>
+                        <p>Subtle luxury for frequent travelers</p>
                     </div>
                 </div>
 
+                <div class="m-card" data-name="Platinum" role="listitem" tabindex="0">
+                    <img src="https://media.cntraveler.com/photos/684af6ee87c5aa8d6e1331e7/16:9/w_1072,h_603,c_limit/Etihad-pr-cabins-the-residence-1.jpg"
+                        alt="Platinum cabin">
+                    <div class="m-overlay">
+                        <h3>Platinum</h3>
+                        <p>Premium comfort for seasoned flyers</p>
+                    </div>
+                </div>
+
+                <div class="m-card" data-name="Elite" role="listitem" tabindex="0">
+                    <img src="https://cdn.onemileatatime.com/wp-content/uploads/2020/10/Emirates-A380-Bar.jpg"
+                        alt="Elite suite">
+                    <div class="m-overlay">
+                        <h3>Elite</h3>
+                        <p>Exclusive service at every step</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="center">
+                <button class="btn primary cta">Find Your Perfect Membership</button>
             </div>
         </section>
 
+        <!-- TOP DESTINATIONS (carousel) -->
+        <section id="destinations" class="destinations container">
+            <div class="dest-header">
+                <div>
+                    <h2 class="section-title">Top Destinations</h2>
+                    <p class="section-sub">Elevate your travels to the world’s most sought-after
+                        destinations.</p>
+                </div>
+            </div>
 
+            <div class="carousel-wrap">
+                <button class="scroll-btn left" aria-label="Scroll left">&lt;</button>
 
+                <div class="carousel" tabindex="0" aria-roledescription="carousel" aria-label="Top destinations">
+                    <div class="d-card">
+                        <img src="https://media.cnn.com/api/v1/images/stellar/prod/180313182911-01-las-vegas-travel-strip.jpg?q=w_800,h_500,c_fill"
+                            alt="Las Vegas">
+                        <span class="d-title">Las Vegas</span>
+                    </div>
 
+                    <div class="d-card">
+                        <img src="https://expertvagabond.com/wp-content/uploads/cancun-things-to-do-guide.jpg"
+                            alt="Cancun">
+                        <span class="d-title">Cancun</span>
+                    </div>
+
+                    <div class="d-card">
+                        <img src="https://res.klook.com/image/upload/c_crop,h_1687,w_3000,x_0,y_312,z_0.2/w_750,h_469,c_fill,q_85/activities/avkqwz1ar2964muauoml.jpg"
+                            alt="Orlando">
+                        <span class="d-title">Orlando</span>
+                    </div>
+
+                    <div class="d-card">
+                        <img src="https://wnpa.org/sites/default/files/styles/scale_1440/public/2025-04/K4R03P9uwq3RJoOn.jpeg?itok=mgBF5p6z"
+                            alt="Monterey">
+                        <span class="d-title">Monterey</span>
+                    </div>
+
+                    <div class="d-card">
+                        <img src="https://www.andrewshoemaker.com/images/640/e-komo-mai-makena-maui.jpg" alt="Hawaii">
+                        <span class="d-title">Hawaii</span>
+                    </div>
+
+                    <div class="d-card">
+                        <img src="https://guias-viajar.com/wp-content/uploads/2018/12/chicago-001.jpg" alt="Chicago">
+                        <span class="d-title">Chicago</span>
+                    </div>
+
+                    <div class="d-card">
+                        <img src="https://ik.imgkit.net/3vlqs5axxjf/external/ik-seo/http://images.ntmllc.com/v4/destination/United-States/Seattle/112113_SCN1_Seattle_Z3EA1E/Seattle-Scenery.jpg?tr=w-656%2Ch-390%2Cfo-auto"
+                            alt="Seattle">
+                        <span class="d-title">Seattle</span>
+                    </div>
+
+                    <div class="d-card">
+                        <img src="https://www.visittheusa.com/sites/default/files/styles/16_9_1280x720/public/2016-10/Getty_591648687_Brand_City_SanFrancisco_Hero_FinalCrop.jpg?h=dd3c63f2&itok=l_KNufUd"
+                            alt="San Francisco">
+                        <span class="d-title">San Francisco</span>
+                    </div>
+                </div>
+
+                <button class="scroll-btn right" aria-label="Scroll right">&gt;</button>
+            </div>
+
+            <div class="center">
+                <button class="btn ghost view-more">View More Destinations</button>
+            </div>
+        </section>
+
+        <!-- EVERY FLIGHT TAKES DETAIL (placeholder) -->
+        <section id="features" class="features container">
+            <h2 class="section-title">Every Flight Takes Detail</h2>
+            <p class="section-sub">Thoughtful features designed around you.</p>
+
+            <div class="features-grid">
+                <article class="feature">
+                    <h3>Intuitive Comfort</h3>
+                    <p>Smart layouts and seating designed to enhance rest and work onboard.</p>
+                </article>
+                <article class="feature">
+                    <h3>Aesthetic Engineering</h3>
+                    <p>Lighting, textures and materials selected to reduce fatigue and increase calm.</p>
+                </article>
+                <article class="feature">
+                    <h3>Human-Centered Service</h3>
+                    <p>Discreet, thoughtful service that anticipates your needs.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- QUOTE -->
+        <section class="quote container">
+            <blockquote>
+                <p>“Elevate your travel. Elevate yourself.”</p>
+                <cite>— Aether Philosophy</cite>
+            </blockquote>
+        </section>
+
+        <!-- BOOKING MADE EASY -->
+        <section id="booking" class="booking container">
+            <div class="booking-card">
+                <h3>Booking Made Easy</h3>
+                <p>From search to takeoff, every step is designed to be effortless.</p>
+                <a class="btn primary" href="#">Book Your Next Journey</a>
+            </div>
+
+            <div class="booking-features">
+                <div class="bf">
+                    <h4>Smart Search</h4>
+                    <p>Find your perfect flight in seconds.</p>
+                </div>
+                <div class="bf">
+                    <h4>Flexible Booking</h4>
+                    <p>Change plans without hassle.</p>
+                </div>
+                <div class="bf">
+                    <h4>Personalized Experience</h4>
+                    <p>Tailored just for you.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- JOURNEYS WORTH SHARING -->
+        <section class="stories container">
+            <h3>Journeys worth sharing</h3>
+            <div class="stories-grid">
+                <div class="story">
+                    <blockquote>“Flying with Aether isn’t just about getting from one place to another —
+                        it’s an
+                        experience in itself.”</blockquote>
+                    <p class="meta">— Isabella Chen, Business Traveler</p>
+                </div>
+
+                <div class="story">
+                    <blockquote>“Aether redefines what it means to fly in comfort.”</blockquote>
+                    <p class="meta">— Marcus Le Blanc, Frequent Flyer</p>
+                </div>
+            </div>
+        </section>
     </main>
 
+    <!-- FOOTER -->
     <footer class="site-footer">
-        <div class="container">
-
-            <div class="row">
-                <div class="col-6">
-                    <h2>About Simple Base</h2>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident necessitatibus quod quae
-                        quasi officiis assumenda natus quis error, iste quo?</p>
-                </div>
-                <div class="col-3 push-9">
-                    <h2>Pages</h2>
-                    <nav>
-                        <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="styleguide.html">Style Guide</a></li>
-                        </ul>
-                    </nav>
-                </div>
+        <div class="container footer-inner">
+            <div class="f-left">
+                <h4>AETHER</h4>
+                <p>Luxury airline that enhances every detail.</p>
             </div>
-
-
+            <div class="f-right">
+                <nav aria-label="Footer">
+                    <a href="#">About</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">Contact</a>
+                </nav>
+            </div>
         </div>
     </footer>
 
-
     <!-- MAIN JS -->
     <script src="js/script.js"></script>
-
 </body>
 
 </html>

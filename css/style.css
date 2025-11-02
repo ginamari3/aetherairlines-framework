@@ -176,6 +176,15 @@ body {
     box-shadow: 0 8px 20px rgba(22, 32, 77, 0.12);
 }
 
+.btn.primary1:hover {
+    background: rgba(255, 255, 255, 0.777);
+    /* white, but 20% opacity */
+    color: #5e5e5e;
+    /* keep the text solid */
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    /* subtle white border */
+    box-shadow: 0 8px 20px rgba(22, 32, 77, 0.12);
+}
 
 .btn.primary {
     background: var(--primary);

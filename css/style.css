@@ -49,24 +49,31 @@ TABLE OF CONTENTS
 ====================== */
 
 /* Headings */
+/* Headings */
 h1,
-h2 {
+h2,
+h3 {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     margin: 0;
 }
 
-/* H1 - Helvetica Neue Bold 64pt (responsive cap at 64px) */
+
+/* H1 - Bold */
 h1 {
     font-weight: 700;
     font-size: clamp(2.5rem, 5vw, 64px);
     line-height: 1.1;
 }
 
-/* H2 - Helvetica Neue Regular 24pt */
+/* H2 - Make it match H1’s font + bold (smaller size) */
 h2 {
-    font-weight: 400;
-    font-size: clamp(1.25rem, 2vw, 24px);
-    line-height: 1.3;
+    font-weight: 700;
+    /* was 400 */
+    font-size: clamp(1.5rem, 3vw, 36px);
+    /* pick a size you like */
+    line-height: 1.2;
+}
+
 }
 
 /* Buttons - Helvetica Neue Regular 18/20pt */
@@ -189,7 +196,8 @@ body {
 .btn.primary {
     background: var(--primary);
     color: #fff;
-    box-shadow: 0 8px 20px rgba(22, 32, 77, 0.12)
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+    /* darker, more visible */
 }
 
 .btn.ghost {
@@ -205,12 +213,12 @@ body {
 }
 
 /* headings */
-.section-title {
+/* .section-title {
     font-family: "Playfair Display", serif;
     margin: 0 0 .25rem 0;
     font-size: 1.5rem;
     color: var(--text-dark)
-}
+} */
 
 .section-sub {
     color: var(--muted);
@@ -423,8 +431,10 @@ body {
 /* responsive stars in bottom-right */
 .hero-stars {
     position: absolute;
+    top: 50%;
     bottom: clamp(8px, 2vw, 24px);
     right: clamp(8px, 2vw, 24px);
+    transform: translateY(-50%);
 
     /* scale with viewport, but keep sane limits */
     width: clamp(120px, 18vw, 300px);
@@ -432,11 +442,13 @@ body {
     /* keeps aspect ratio */
     opacity: 0.9;
     pointer-events: none;
+    z-index: 2;
 }
 
 /* optional: on very small screens, shrink more or hide */
 @media (max-width: 420px) {
     .hero-stars {
+        top: 55%;
         width: clamp(120px, 38vw, 240px);
         opacity: .85;
     }
@@ -465,7 +477,8 @@ body {
 /* Pronunciation at top, separate from headline block */
 .pronounce {
     align-self: center;
-    top: 0px;
+    position: relative;
+    top: -25%;
     /* centers this line within the flex container */
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 400;
@@ -551,31 +564,64 @@ body {
     padding: 48px 0
 }
 
+/* Keep all cards equal height and only animate width */
 .membership-cards {
     display: flex;
     gap: 16px;
-    align-items: stretch;
-    margin-top: 18px
+    /* align-items: stretch; */
 }
 
+
+#memberships .center {
+    margin-top: 10px;
+    /* start fresh */
+    margin-top: 1rem;
+    /* tweak until it looks ~20% closer */
+}
+
+
+/* (Optional) different spacing on small screens */
+@media (max-width: 760px) {
+    #memberships .center {
+        margin-top: 2rem;
+    }
+}
+
+
+/* Global base card rule — remove transition: all */
 .m-card {
+    flex: 1 0 0;
+    /* grow=1, basis=0 => smooth reflow */
+    min-width: 0;
+    /* avoid overflow calc jitter */
+    transition: flex-grow .35s ease;
+    /* ONLY animate width */
+    cursor: pointer;
     border-radius: 14px;
     overflow: hidden;
-    min-height: 260px;
-    flex: 1;
+    min-height: 400px;
     position: relative;
     box-shadow: var(--card-shadow);
-    transition: all .45s ease;
-    cursor: pointer;
-    display: flex
+    display: flex;
 }
 
+/* keep overlay & images as you had */
 .m-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block
+    display: block;
 }
+
+/* .m-card .m-overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 14px;
+    background: linear-gradient(0deg, rgba(11, 35, 64, .6), rgba(11, 35, 64, .12));
+    color: #fff;
+} */
 
 .m-card .m-overlay {
     position: absolute;
@@ -583,22 +629,205 @@ body {
     right: 0;
     bottom: 0;
     padding: 14px;
-    background: linear-gradient(0deg, rgba(11, 35, 64, 0.6), rgba(11, 35, 64, 0.12));
-    color: #fff
+    z-index: 2;
+    color: #fff;
 }
 
+.m-card .m-overlay::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 7px;
+    /* Shrinks the overlay box by 15px in height */
+    background: rgba(24, 24, 24, 0.396);
+    z-index: -1;
+}
+
+
+
+
+/* Active widens via flex-grow only */
 .m-card.active {
-    flex: 2.2;
-    transform: translateY(-6px)
+    flex-grow: 2.2;
 }
 
+
+/* Visual treatment, no size transforms here */
 .m-card:not(.active) {
-    filter: grayscale(.08) brightness(.95)
+    filter: grayscale(.08) brightness(.95);
 }
 
+
+
+/* =========================
+   TOP DESTINATIONS SECTION
+   (light purple bg + clouds)
+========================= */
 .destinations {
-    padding: 48px 0
+    position: relative;
+    background: #c7cce1;
+    background-size: cover;
+    border-radius: 30px;
+    padding: 60px 40px;
+    margin: 60px auto;
+    max-width: var(--container);
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
 }
+
+
+/* Header area (left aligned) */
+.dest-header {
+    text-align: left !important;
+    margin-bottom: 1.5rem;
+    max-width: 600px;
+    /* optional */
+}
+
+/* Title + subhead inside Destinations, force left */
+.destinations .dest-header .section-title,
+.destinations .dest-header .section-sub {
+    color: #0b1220;
+    text-align: left !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+}
+
+
+/* Soft overlay to help content pop */
+.destinations::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+            rgba(255, 255, 255, 0.0) 0%,
+            rgba(255, 255, 255, 0.1) 100%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* only raise non-cloud children */
+.destinations> :not(.cloud-divider) {
+    position: relative;
+    z-index: 1;
+}
+
+.dest-header {
+    margin-bottom: 1.5rem;
+}
+
+
+
+/* _______________________________ */
+
+/* Pull the CTA ~20% closer: 20px → 16px */
+.destinations .center {
+    margin-top: 16px;
+}
+
+/* Kill the button's built-in top margin inside Destinations */
+.destinations .view-more {
+    margin-top: -20px;
+}
+
+/* (Optional) shave a bit of padding under the carousel if you need it tighter */
+.destinations .carousel-wrap {
+    padding-bottom: 6px;
+    /* was 10px */
+}
+
+
+/* Carousel styling */
+.destinations .carousel-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 10px 0;
+}
+
+.destinations .carousel {
+    display: flex;
+    overflow-x: auto;
+    gap: 16px;
+    padding: 10px;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.destinations .carousel::-webkit-scrollbar {
+    display: none;
+}
+
+/* Cards inside */
+.d-card {
+    flex: 0 0 auto;
+    width: 240px;
+    height: 320px;
+    border-radius: 14px;
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(180deg, #fff, #fbfdff);
+    box-shadow: var(--card-shadow);
+}
+
+.d-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.d-title {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(11, 35, 64, 0.5);
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+/* Carousel scroll buttons */
+.scroll-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: var(--primary);
+    color: #fff;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 8px 18px rgba(36, 60, 122, 0.12);
+}
+
+.scroll-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Centered CTA */
+.destinations .center {
+    margin-top: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .destinations {
+        border-radius: 20px;
+        padding: 40px 20px;
+    }
+}
+
+
+
+/* ________________________ */
+
+
 
 .carousel-wrap {
     display: flex;
@@ -651,12 +880,12 @@ body {
 
 .scroll-btn {
     width: 44px;
-    height: 44px;
+    height: 30px;
     border-radius: 999px;
     border: none;
     background: var(--primary);
     color: #fff;
-    font-weight: 700;
+    font-weight: 800;
     cursor: pointer;
     box-shadow: 0 8px 18px rgba(36, 60, 122, 0.12)
 }
@@ -835,12 +1064,34 @@ body {
     }
 
     .membership-cards {
-        flex-direction: column
+        display: flex;
+        align-items: stretch;
+        /* equal heights */
+        gap: 16px;
+    }
+
+    .m-card {
+        flex: 1 0 0;
+        /* basis 0 avoids width recalcs */
+        transition: flex-grow .35s ease !important;
+        /* ONLY animate width */
+        will-change: flex-grow;
     }
 
     .m-card.active {
-        flex: 1
+        flex-grow: 2.2;
+        /* widen active card */
     }
+
+    .m-card:not(.active) {
+        filter: grayscale(.08) brightness(.95);
+        /* visual only; no transforms */
+    }
+
+    .m-card.swapping {
+        transition: none !important;
+    }
+
 
     .features-grid {
         grid-template-columns: 1fr
@@ -920,13 +1171,16 @@ body {
     padding-bottom: 10px;
 }
 
+
+
 /* More balanced spacing inside */
 .ab-grid {
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: clamp(20px, 2vw, 36px);
     align-items: end;
-    padding: clamp(18px, 2vw, 28px) clamp(22px, 3vw, 40px);
+    padding: clamp(18px, 2vw, 40px);
+    /* padding: clamp(18px, 2vw, 28px) clamp(22px, 3vw, 40px); */
 }
 
 /* LEFT SIDE (HNL ↔ TO) */
@@ -1084,5 +1338,214 @@ body {
     .ab-btn-search {
         grid-column: 1/2;
         justify-self: start;
+    }
+}
+
+/* ==== CLOUDS — HARD OVERRIDE (place last) ==== */
+
+/* Ensure sections create the positioning context and don't clip clouds */
+#memberships,
+#destinations {
+    position: relative !important;
+    overflow: visible !important;
+}
+
+/* Base cloud setup + animation */
+.cloud-divider {
+    position: absolute !important;
+    right: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    pointer-events: none;
+    transform-origin: center;
+    transform: translateX(100px) scale(0.75);
+    /* start off-screen to the right */
+    opacity: 0;
+    /* invisible at start */
+    animation: cloudSlideIn 1.2s ease-out forwards;
+    z-index: 1;
+}
+
+/* Keyframes for sliding clouds in from right */
+@keyframes cloudSlideIn {
+    0% {
+        transform: translateX(100px) scale(0.75);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0) scale(0.75);
+        opacity: 1;
+    }
+}
+
+/* Staggered delays for sequential entrance */
+#memberships .cloud-1 {
+    bottom: -90px !important;
+    right: 290px !important;
+    animation-delay: 0.2s;
+}
+
+#destinations .cloud-2 {
+    top: -80px !important;
+    right: 90px !important;
+    animation-delay: 0.8s;
+}
+
+#memberships .cloud-3 {
+    bottom: -90px !important;
+    right: -120px !important;
+    animation-delay: 1.4s;
+}
+
+/* Optional: visual debug */
+/* .cloud-divider { outline: 1px dashed magenta; } */
+
+/* === FORCE H1 + H3 TO MATCH (place last) === */
+h1,
+h3,
+.m-card .m-overlay h3,
+/* membership cards */
+.booking-card h3,
+/* booking card */
+.feature h3,
+/* features grid */
+.stories h3
+
+/* stories section */
+    {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-weight: 700 !important;
+    letter-spacing: 0 !important;
+    font-style: normal !important;
+}
+
+/* keep sizes distinct so hierarchy stays clean */
+h3 {
+    font-size: clamp(1.125rem, 1.6vw, 22px) !important;
+    line-height: 1.25 !important;
+    margin: 0 0 .25rem 0 !important;
+}
+
+
+
+/* ========== FLIGHT DETAIL ========== */
+.flight-detail {
+    position: relative;
+    padding: clamp(40px, 6vw, 80px) 0;
+    overflow: hidden;
+}
+
+/* Grid layout: two columns on desktop */
+.flight-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: clamp(24px, 4vw, 48px);
+    align-items: start;
+}
+
+@media (max-width: 900px) {
+    .flight-detail-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* LEFT side */
+.flight-detail-intro h2 {
+    font-weight: 700;
+    font-size: clamp(2rem, 4.6vw, 48px);
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
+    color: var(--text-dark);
+}
+
+.flight-detail-intro p {
+    max-width: 46ch;
+    color: var(--text-dark);
+}
+
+/* RIGHT side cards */
+.flight-detail-features {
+    display: grid;
+    gap: 18px;
+}
+
+/* Card style */
+.fd-card {
+    display: grid;
+    grid-template-columns: 84px 1fr;
+    gap: 16px;
+    align-items: center;
+    background: #7e8097;
+    /* muted lavender-gray */
+    color: #fff;
+    border-radius: 22px;
+    box-shadow: 0 10px 18px rgba(11, 35, 64, .08);
+    padding: 18px;
+}
+
+/* Icon block */
+.fd-icon {
+    position: relative;
+    width: 84px;
+    height: 84px;
+    border-radius: 18px;
+    overflow: hidden;
+    /* keeps corners clean */
+    background-color: #e9e9ef;
+    /* white box color */
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .06);
+}
+
+.fd-icon img {
+    position: absolute;
+    inset: 0;
+    /* stretch to edges */
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    /* stretch image to fit entire box */
+    border-radius: inherit;
+    /* match rounded edges */
+}
+
+
+
+
+/* Text inside card */
+.fd-text h3 {
+    font-weight: 700;
+    font-size: clamp(1.15rem, 2.2vw, 24px);
+    margin: 0 0 6px 0;
+}
+
+.fd-text p {
+    margin: 0;
+    color: rgba(255, 255, 255, .92);
+}
+
+/* Fade-in animation */
+.fd-card {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fdFade .6s ease forwards;
+}
+
+.fd-card:nth-child(1) {
+    animation-delay: .1s
+}
+
+.fd-card:nth-child(2) {
+    animation-delay: .25s
+}
+
+.fd-card:nth-child(3) {
+    animation-delay: .4s
+}
+
+@keyframes fdFade {
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

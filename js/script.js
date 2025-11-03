@@ -45,16 +45,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /* ------- MEMBERSHIP HOVER / FOCUS ------- */
+
+    /* ------- MEMBERSHIP HOVER / FOCUS (no dip) ------- */
     const mCards = Array.from(document.querySelectorAll('.m-card'));
+
     function activateMembership(el) {
-        mCards.forEach(c => c.classList.remove('active'));
+        if (!el || el.classList.contains('active')) return;
+
+        // add active first to avoid a frame with "no active"
         el.classList.add('active');
+
+        // then remove from others on the next frame
+        requestAnimationFrame(() => {
+            mCards.forEach(c => { if (c !== el) c.classList.remove('active'); });
+        });
     }
+
+    // keep the first card active by default (already in your HTML)
     mCards.forEach(card => {
         card.addEventListener('mouseenter', () => activateMembership(card));
         card.addEventListener('focusin', () => activateMembership(card));
-        // Allow keyboard users to toggle with Enter/Space
         card.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
@@ -62,6 +72,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+
 
     /* ------- DESTINATIONS CAROUSEL ------- */
     const carousel = document.querySelector('.carousel');

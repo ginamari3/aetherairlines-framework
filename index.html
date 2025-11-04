@@ -16,8 +16,8 @@
 
 <body>
 
-    <header class="site-header">
-        <div class="logo">
+    <header class="site-header on-top-of-hero">
+        <div class="logo slide-from-top-and-fade-in- delay-4">
 
 
             <!-- INLINE IMG LOGO EXAMPLE -->
@@ -29,7 +29,7 @@
         </div>
         <nav class="site-nav">
 
-            <nav class="site-nav" data-menustate="closed">
+            <nav class="site-nav">
                 <button class="menubutton">
                     <span class="hide-visually">Menu</span>
                     <svg class="simple-navicon" width="24" height="21">
@@ -39,8 +39,8 @@
                     </svg>
                 </button>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="styleguide.html">Style Guide</a></li>
+                    <li class="slide-from-top-and-fade-in delay-5"><a href="index.html">Home</a></li>
+                    <li class="slide-from-top-and-fade-in delay-6"><a href="styleguide.html">Style Guide</a></li>
                 </ul>
             </nav>
 
@@ -52,9 +52,10 @@
 
         <section class="hero text-centered">
 
-            <h1>Crafted Comfort, Elevated Service</h1>
-            <h2>Luxury airline that enhances every detail</h2>
-            <p>This is the framework for my Aether Airline website design project for ART 258.</p>
+            <h1 class="slide-from-top-and-fade-in delay-0">Crafted Comfort, Elevated Service</h1>
+            <h2 class="slide-from-top-and-fade-in delay-1">Luxury airline that enhances every detail</h2>
+            <p class="slide-from-top-and-fade-in delay-2">This is the framework for my Aether Airline website design
+                project for ART 258.</p>
             <a href="#features" class="button">See Features</a>
 
         </section>
@@ -64,12 +65,15 @@
 
                 <div class="row">
                     <div class="one-half">
-                        <img src="img/placeholder-2000x1000.gif" alt="Placeholder image" width="2000" height="1000">
+                        <img class="observe-me onscroll-slide-in-from-left" src="img/placeholder-2000x1000.gif"
+                            alt="Placeholder image" width="2000" height="1000">
                     </div>
                     <div class="one-half">
-                        <h2>Image on the Left, Text on the Right</h2>
-                        <p>This column is rending via the default normal flow. Lorem ipsum dolor sit amet consectetur
-                            adipisicing elit. Dolorum, fugit reprehenderit nobis eum modi ex.</p>
+                        <h2 class="observe-me onscroll-slide-in-from-right delay-4">Image on the Left, Text on the Right
+                        </h2>
+                        <p class="observe-me onscroll-slide-in-from-right delay-6">This column is rending via the
+                            default normal flow. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, fugit
+                            reprehenderit nobis eum modi ex.</p>
                     </div>
                 </div>
 
@@ -127,7 +131,6 @@
                     <nav>
                         <ul>
                             <li><a href="index.html">Home</a></li>
-                            <li><a href="documentation.html">Documentation</a></li>
                             <li><a href="styleguide.html">Style Guide</a></li>
                         </ul>
                     </nav>
@@ -143,3 +146,5 @@
     <script src="js/script.js"></script>
 
 </body>
+
+</html>

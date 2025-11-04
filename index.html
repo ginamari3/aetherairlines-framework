@@ -162,12 +162,6 @@
 
     </section>
 
-
-
-
-
-
-
     <!-- TOP DESTINATIONS (carousel) -->
     <section id="destinations" class="destinations container">
         <img class="cloud-divider cloud-2" src="../aetherairlines-framework/img/3-4-2-memberships-clouds-darkblue.jpg"
@@ -301,7 +295,7 @@
                 <div class="bm-left">
                     <article class="bm-card">
                         <div class="bm-icon">
-                            <img src="../aetherairlines-framework/img/6-1-booking-airplaine-icon.jpg"
+                            <img src="../aetherairlines-framework/img/6-1-2-booking-airplaine-icon.png"
                                 alt="Airplane icon" />
                         </div>
                         <div class="bm-text">
@@ -312,7 +306,7 @@
 
                     <article class="bm-card">
                         <div class="bm-icon">
-                            <img src="../aetherairlines-framework/img/6-2-booking-calender-icon.jpg"
+                            <img src="../aetherairlines-framework/img/6-2-2-booking-calender-icon.png"
                                 alt="Calendar icon" />
                         </div>
                         <div class="bm-text">
@@ -323,7 +317,7 @@
 
                     <article class="bm-card">
                         <div class="bm-icon">
-                            <img src="../aetherairlines-framework/img/6-3-booking-checklist-icon.jpg"
+                            <img src="../aetherairlines-framework/img/6-3-2-booking-checklist-icon.png"
                                 alt="Checklist icon" />
                         </div>
                         <div class="bm-text">
@@ -347,41 +341,125 @@
         </section>
 
 
-        <!-- JOURNEYS WORTH SHARING -->
-        <section class="stories container">
-            <h3>Journeys worth sharing</h3>
-            <div class="stories-grid">
-                <div class="story">
-                    <blockquote>“Flying with Aether isn’t just about getting from one place to another —
-                        it’s an
-                        experience in itself.”</blockquote>
-                    <p class="meta">— Isabella Chen, Business Traveler</p>
+        <!-- JOURNEYS -->
+        <section id="journeys" class="journeys container" aria-labelledby="journeys-title">
+            <div class="journeys-wrap">
+                <h2 id="journeys-title" class="journeys-title">Journeys worth sharing</h2>
+
+                <div class="t-grid" role="list">
+                    <!-- Left / Dark card -->
+                    <article class="t-card t-card--dark" role="listitem">
+                        <p class="t-quote">
+                            “Flying with Aether isn’t just about getting from one place to another — it’s an experience
+                            in itself.
+                            From the serene lounges to the impeccable in-flight service, every moment feels meticulously
+                            crafted.
+                            I’ve never felt more at ease traveling internationally.”
+                        </p>
+
+                        <div class="t-meta">
+                            <img class="t-avatar" src="../aetherairlines-framework/img/7-1-journeys-isabella.jpg"
+                                alt="Isabella Chen" />
+                            <p class="t-name">–Isabella Chen,<br><span>Business Traveler</span></p>
+                        </div>
+                    </article>
+
+                    <!-- Right / Light card -->
+                    <article class="t-card t-card--light" role="listitem">
+                        <p class="t-quote">
+                            “Aether Airlines redefines what it means to fly in comfort. Every detail, from seating to
+                            cuisine,
+                            exudes thoughtful elegance. I find myself planning trips just to enjoy <br> the journey
+                            itself.”
+                        </p>
+
+                        <div class="t-meta">
+                            <img class="t-avatar" src="../aetherairlines-framework/img/7-2-journeys-marcus.jpg"
+                                alt="Marcus Le Blanc" />
+                            <p class="t-name">–Marcus Le Blanc,<br><span>Frequent Flyer</span></p>
+                        </div>
+                    </article>
                 </div>
 
-                <div class="story">
-                    <blockquote>“Aether redefines what it means to fly in comfort.”</blockquote>
-                    <p class="meta">— Marcus Le Blanc, Frequent Flyer</p>
+                <div class="center">
+                    <a href="#" class="btn primary t-cta">Hear More Stories</a>
                 </div>
             </div>
         </section>
-        </main>
+
 
         <!-- FOOTER -->
-        <footer class="site-footer">
+        <footer class="site-footer full-bleed">
             <div class="container footer-inner">
-                <div class="f-left">
-                    <h4>AETHER</h4>
-                    <p>Luxury airline that enhances every detail.</p>
+                <!-- Brand -->
+                <div class="f-brand">
+                    <h3 class="f-logo">
+                        <img class="f-logo-big" src="../aetherairlines-framework/img/8-1-2-footer-white-title-logo.png"
+                            height="80" width="200" alt="Aether Airlines Logo">
+                    </h3>
+                    <p class="f-tag">“Luxury airline that enhances every detail.”</p>
+
+                    <!-- Decorative mark (optional) -->
+                    <img class="f-mark" src="../aetherairlines-framework/img/8-2-2-footer-white-bird-logo.png" alt=""
+                        aria-hidden="true" />
                 </div>
-                <div class="f-right">
-                    <nav aria-label="Footer">
-                        <a href="#">About</a>
-                        <a href="#">FAQ</a>
-                        <a href="#">Contact</a>
-                    </nav>
+
+                <!-- Menu -->
+                <nav class="f-col" aria-label="Menu">
+                    <h4>Menu</h4>
+                    <ul class="f-links">
+                        <li><a href="#booking">Book</a></li>
+                        <li><a href="#destinations">Destinations</a></li>
+                        <li><a href="#memberships">Memberships</a></li>
+                        <li><a href="#lounges">Lounges</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Information -->
+                <nav class="f-col" aria-label="Information">
+                    <h4>Information</h4>
+                    <ul class="f-links">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Partners</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Newsletter + Social -->
+                <div class="f-news">
+                    <h4>Newsletter</h4>
+                    <form class="newsletter" action="#" method="post" onsubmit="return false;">
+                        <label class="sr-only" for="f-email">Enter your E-mail</label>
+                        <input id="f-email" type="email" placeholder="Enter your E-mail" required />
+                        <button type="submit" aria-label="Subscribe">→</button>
+                    </form>
+
+                    <div class="f-social">
+                        <h5>Social Media</h5>
+                        <div class="icons">
+                            <a href="#" class="icon-btn" aria-label="X (Twitter)">
+                                <img src="../aetherairlines-framework/img/8-3-2-footer-social-x.png" alt="X Logo" />
+                            </a>
+                            <a href="#" class="icon-btn" aria-label="Instagram">
+                                <img src="../aetherairlines-framework/img/8-4-2-footer-social-instagram.png"
+                                    alt="Instagram Logo" />
+                            </a>
+                            <a href="#" class="icon-btn" aria-label="Facebook">
+                                <img src="../aetherairlines-framework/img/8-5-2-footer-social-facebook.png"
+                                    alt="Facebook Logo" />
+                            </a>
+                        </div>
+                    </div>
+
                 </div>
             </div>
+
+            <div class="container footer-bottom">
+                <p>© 2025 Aether Airlines. All rights reserved.</p>
+            </div>
         </footer>
+
 
         <!-- MAIN JS -->
         <script src="js/script.js"></script>

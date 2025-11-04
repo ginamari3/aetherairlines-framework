@@ -201,3 +201,23 @@ document.addEventListener('DOMContentLoaded', () => {
         bookingSection.classList.add('in-view');
     }
 });
+
+
+// Journeys: idle-until-scroll
+(function () {
+    const section = document.getElementById('journeys');
+    if (!section || 'IntersectionObserver' in window === false) {
+        // Fallback: show immediately
+        section && section.classList.add('in-view');
+        return;
+    }
+    const io = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                section.classList.add('in-view');
+                obs.unobserve(entry.target); // play once
+            }
+        });
+    }, { root: null, threshold: 0.25 });
+    io.observe(section);
+})();

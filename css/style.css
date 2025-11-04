@@ -1,7 +1,5 @@
 /* --------------------
-
 TABLE OF CONTENTS 
-
 # GLOBALS
 # LAYOUT
 # SITE STRUCTURE
@@ -9,7 +7,10 @@ TABLE OF CONTENTS
 # CUSTOM SITE STYLING (OPINIONATED)
 # ANIMATIONS
 # FLIGHT SEARCH BAR (static UI)
-
+# SECTIONS (Members, Destinations, Flight Detail, Quote, Booking, Journeys)
+# UTILITIES
+# MEDIA QUERIES
+# FOOTER (moved to very bottom)
 ----------------------- */
 
 /* ------------------
@@ -49,14 +50,12 @@ TABLE OF CONTENTS
 ====================== */
 
 /* Headings */
-/* Headings */
 h1,
 h2,
 h3 {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     margin: 0;
 }
-
 
 /* H1 - Bold */
 h1 {
@@ -65,15 +64,11 @@ h1 {
     line-height: 1.1;
 }
 
-/* H2 - Make it match H1’s font + bold (smaller size) */
+/* H2 - Bold (match H1 family) */
 h2 {
     font-weight: 700;
-    /* was 400 */
     font-size: clamp(1.5rem, 3vw, 36px);
-    /* pick a size you like */
     line-height: 1.2;
-}
-
 }
 
 /* Buttons - Helvetica Neue Regular 18/20pt */
@@ -105,15 +100,12 @@ h2 {
     font-weight: 400;
 }
 
-/* city names */
+/* small labels */
 .ab-options-title,
 .ab-check {
     font-size: 16px;
     font-weight: 400;
 }
-
-/* small labels */
-
 
 * {
     box-sizing: border-box
@@ -160,7 +152,7 @@ body {
 .center {
     display: flex;
     justify-content: center;
-    align-items: center
+    align-items: center;
 }
 
 .btn {
@@ -170,26 +162,20 @@ body {
     text-decoration: none;
     font-weight: 400;
     border: none;
-    cursor: pointer
+    cursor: pointer;
 }
 
 .btn.primary1 {
     background: rgba(255, 255, 255, 0.2);
-    /* white, but 20% opacity */
     color: #ffffff;
-    /* keep the text solid */
     border: 1px solid rgba(255, 255, 255, 0.6);
-    /* subtle white border */
     box-shadow: 0 8px 20px rgba(22, 32, 77, 0.12);
 }
 
 .btn.primary1:hover {
     background: rgba(255, 255, 255, 0.777);
-    /* white, but 20% opacity */
     color: #5e5e5e;
-    /* keep the text solid */
     border: 1px solid rgba(255, 255, 255, 0.6);
-    /* subtle white border */
     box-shadow: 0 8px 20px rgba(22, 32, 77, 0.12);
 }
 
@@ -197,32 +183,23 @@ body {
     background: var(--primary);
     color: #fff;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
-    /* darker, more visible */
 }
 
 .btn.ghost {
     background: transparent;
     color: var(--primary);
-    border: 1px solid rgba(22, 32, 77, 0.06)
+    border: 1px solid rgba(22, 32, 77, 0.06);
 }
 
 .btn.secondary {
     background: transparent;
     color: var(--primary);
-    border: 1px solid rgba(22, 32, 77, 0.08)
+    border: 1px solid rgba(22, 32, 77, 0.08);
 }
-
-/* headings */
-/* .section-title {
-    font-family: "Playfair Display", serif;
-    margin: 0 0 .25rem 0;
-    font-size: 1.5rem;
-    color: var(--text-dark)
-} */
 
 .section-sub {
     color: var(--muted);
-    margin: 0 0 1rem 0
+    margin: 0 0 1rem 0;
 }
 
 /* ========== NAVBAR ========== */
@@ -232,15 +209,12 @@ body {
     justify-content: center;
     /* centers all navbar content as a group */
     padding: 10px 1rem;
-    /* reduced padding to tighten layout */
     max-width: var(--container);
     /* align with main content */
     margin: 0 auto;
-    /* center horizontally */
     box-shadow: 0 1px 6px rgba(11, 35, 64, 0.04);
     background: transparent;
     flex-wrap: nowrap;
-    /* keep items in one line on desktop */
     gap: 16px;
     /* balanced global gap between sections */
 }
@@ -250,7 +224,6 @@ body {
     display: flex;
     align-items: center;
     margin-right: 12px;
-    /* subtle space between logo and nav links */
 }
 
 .logo img {
@@ -289,11 +262,8 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
-    /* small space between search and signup */
     width: auto;
-    /* prevent stretching */
     flex-direction: row;
-    /* keep inline on desktop */
     margin-left: auto;
 }
 
@@ -313,7 +283,6 @@ body {
     padding: 6px 4px;
     font-size: 14px;
     min-width: 150px;
-    /* smaller, tighter */
 }
 
 .search-btn {
@@ -361,13 +330,11 @@ body {
         display: block;
     }
 
-    /* Desktop: show links inline with comfy spacing */
+    /* Desktop: show links inline with comfy spacing (kept inline for <=760px) */
     .nav-links {
         display: flex;
-        /* inline on desktop */
         flex-direction: row;
         gap: 24px;
-        /* space between links */
         margin: 0;
         padding: 0;
         align-items: center;
@@ -376,21 +343,16 @@ body {
     /* Mobile: when menu is opened, stack with larger gaps */
     .navbar.active .nav-links {
         display: flex;
-        /* shown when nav is active */
         width: 100%;
         flex-direction: column;
         gap: 14px;
-        /* a bit more space for taps */
         margin-top: 10px;
     }
 
-    /* Optional: add inner padding to each link target */
     .nav-links a {
         padding: 8px 10px;
-        /* increases clickable area */
         border-radius: 8px;
     }
-
 
     .search-signup {
         width: 100%;
@@ -400,8 +362,7 @@ body {
     }
 }
 
-
-/* ========== HERO (left-aligned content, top pronunciation with gap) ========== */
+/* ========== HERO ========== */
 .hero {
     position: relative;
     min-height: 70vh;
@@ -410,14 +371,12 @@ body {
     /* ORDER: top → bottom */
     background-image:
         linear-gradient(180deg, rgba(8, 21, 49, 0.10), rgba(8, 21, 49, 0.10)),
-        /* soft darken overlay (top) */
+        /* overlay */
         url('../img/2-1-header-mountainbg.jpg');
-    /* mountain image (middle) */
+    /* mountain */
 
-    /* make sure stars stay bottom right */
     background-repeat: no-repeat, no-repeat, no-repeat;
     background-size: cover, cover, 400px;
-    /* adjust last value for star scale */
     background-position: center, center, bottom right;
 
     display: flex;
@@ -428,24 +387,20 @@ body {
     overflow: hidden;
 }
 
-/* responsive stars in bottom-right */
+/* stars image */
 .hero-stars {
     position: absolute;
     top: 50%;
     bottom: clamp(8px, 2vw, 24px);
     right: clamp(8px, 2vw, 24px);
     transform: translateY(-50%);
-
-    /* scale with viewport, but keep sane limits */
     width: clamp(120px, 18vw, 300px);
     height: auto;
-    /* keeps aspect ratio */
     opacity: 0.9;
     pointer-events: none;
     z-index: 2;
 }
 
-/* optional: on very small screens, shrink more or hide */
 @media (max-width: 420px) {
     .hero-stars {
         top: 55%;
@@ -458,7 +413,7 @@ body {
     display: none;
 }
 
-/* Inner container holds everything vertically */
+/* Inner container */
 .hero-inner {
     position: relative;
     width: 100%;
@@ -467,29 +422,31 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    /* left-align text */
     justify-content: center;
     padding: 0 1.5rem;
     gap: 2rem;
-    /* creates visual separation between pronunciation and rest */
 }
 
-/* Pronunciation at top, separate from headline block */
+/* Pronunciation */
 .pronounce {
     align-self: center;
     position: relative;
     top: -25%;
-    /* centers this line within the flex container */
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 400;
     font-size: 0.9rem;
     color: rgba(255, 255, 255, 0.85);
     margin: 0 0 1rem 0;
-    /* gap below */
     text-align: center;
 }
 
-/* Headline and subhead below */
+.pronounce {
+    font-size: .9rem;
+    color: rgba(255, 255, 255, .85);
+    margin: 0 0 8px 0;
+}
+
+/* Headline + subhead */
 .hero-content h1 {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 700;
@@ -498,12 +455,6 @@ body {
     margin: 0.5rem 0;
     color: #fff;
     text-align: left;
-}
-
-.pronounce {
-    font-size: .9rem;
-    color: rgba(255, 255, 255, .85);
-    margin: 0 0 8px 0;
 }
 
 .lead {
@@ -516,15 +467,13 @@ body {
     text-align: left;
 }
 
-
 .hero-actions {
     display: flex;
     gap: 12px;
     justify-content: flex-start;
-    /* left-align buttons */
 }
 
-/* search card (kept for other pages if used) */
+/* search card (generic) */
 .search-card {
     background: var(--card);
     padding: 16px;
@@ -554,48 +503,37 @@ body {
     border-radius: 10px;
     border: 1px solid rgba(11, 35, 64, 0.06);
     outline: none;
-    font-size: .95rem
+    font-size: .95rem;
 }
 
-/* ========== MEMBERSHIPS, DESTINATIONS, FEATURES, QUOTE, BOOKING, STORIES, FOOTER ========== */
-/* (unchanged from your file; kept for continuity) */
+/* ========== MEMBERSHIPS, DESTINATIONS, FEATURES, QUOTE, BOOKING, JOURNEYS ========== */
 
+/* MEMBERSHIPS */
 .memberships {
-    padding: 48px 0
+    padding: 48px 0;
 }
 
-/* Keep all cards equal height and only animate width */
 .membership-cards {
     display: flex;
     gap: 16px;
-    /* align-items: stretch; */
 }
-
 
 #memberships .center {
-    margin-top: 10px;
-    /* start fresh */
     margin-top: 1rem;
-    /* tweak until it looks ~20% closer */
 }
 
-
-/* (Optional) different spacing on small screens */
 @media (max-width: 760px) {
     #memberships .center {
         margin-top: 2rem;
     }
 }
 
-
-/* Global base card rule — remove transition: all */
+/* Global base card rule — width animation only */
 .m-card {
     flex: 1 0 0;
     /* grow=1, basis=0 => smooth reflow */
     min-width: 0;
-    /* avoid overflow calc jitter */
     transition: flex-grow .35s ease;
-    /* ONLY animate width */
     cursor: pointer;
     border-radius: 14px;
     overflow: hidden;
@@ -605,23 +543,12 @@ body {
     display: flex;
 }
 
-/* keep overlay & images as you had */
 .m-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
 }
-
-/* .m-card .m-overlay {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 14px;
-    background: linear-gradient(0deg, rgba(11, 35, 64, .6), rgba(11, 35, 64, .12));
-    color: #fff;
-} */
 
 .m-card .m-overlay {
     position: absolute;
@@ -640,31 +567,19 @@ body {
     right: 0;
     bottom: 0;
     top: 7px;
-    /* Shrinks the overlay box by 15px in height */
     background: rgba(24, 24, 24, 0.396);
     z-index: -1;
 }
 
-
-
-
-/* Active widens via flex-grow only */
 .m-card.active {
     flex-grow: 2.2;
 }
 
-
-/* Visual treatment, no size transforms here */
 .m-card:not(.active) {
     filter: grayscale(.08) brightness(.95);
 }
 
-
-
-/* =========================
-   TOP DESTINATIONS SECTION
-   (light purple bg + clouds)
-========================= */
+/* DESTINATIONS */
 .destinations {
     position: relative;
     background: #c7cce1;
@@ -677,16 +592,12 @@ body {
     box-shadow: var(--card-shadow);
 }
 
-
-/* Header area (left aligned) */
 .dest-header {
     text-align: left !important;
     margin-bottom: 1.5rem;
     max-width: 600px;
-    /* optional */
 }
 
-/* Title + subhead inside Destinations, force left */
 .destinations .dest-header .section-title,
 .destinations .dest-header .section-sub {
     color: #0b1220;
@@ -695,51 +606,32 @@ body {
     margin-right: auto !important;
 }
 
-
-/* Soft overlay to help content pop */
 .destinations::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg,
-            rgba(255, 255, 255, 0.0) 0%,
-            rgba(255, 255, 255, 0.1) 100%);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.0) 0%, rgba(255, 255, 255, 0.1) 100%);
     z-index: 0;
     pointer-events: none;
 }
 
-/* only raise non-cloud children */
 .destinations> :not(.cloud-divider) {
     position: relative;
     z-index: 1;
 }
 
-.dest-header {
-    margin-bottom: 1.5rem;
-}
-
-
-
-/* _______________________________ */
-
-/* Pull the CTA ~20% closer: 20px → 16px */
 .destinations .center {
     margin-top: 16px;
 }
 
-/* Kill the button's built-in top margin inside Destinations */
 .destinations .view-more {
     margin-top: -20px;
 }
 
-/* (Optional) shave a bit of padding under the carousel if you need it tighter */
 .destinations .carousel-wrap {
     padding-bottom: 6px;
-    /* was 10px */
 }
 
-
-/* Carousel styling */
 .destinations .carousel-wrap {
     display: flex;
     align-items: center;
@@ -763,7 +655,6 @@ body {
     display: none;
 }
 
-/* Cards inside */
 .d-card {
     flex: 0 0 auto;
     width: 240px;
@@ -793,7 +684,6 @@ body {
     font-size: 0.95rem;
 }
 
-/* Carousel scroll buttons */
 .scroll-btn {
     width: 44px;
     height: 44px;
@@ -810,12 +700,10 @@ body {
     transform: translateY(-2px);
 }
 
-/* Centered CTA */
 .destinations .center {
     margin-top: 20px;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     .destinations {
         border-radius: 20px;
@@ -823,17 +711,12 @@ body {
     }
 }
 
-
-
-/* ________________________ */
-
-
-
+/* (shared carousel classes) */
 .carousel-wrap {
     display: flex;
     align-items: center;
     gap: 12px;
-    position: relative
+    position: relative;
 }
 
 .carousel {
@@ -842,11 +725,11 @@ body {
     gap: 16px;
     padding: 10px;
     scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch
+    -webkit-overflow-scrolling: touch;
 }
 
 .carousel::-webkit-scrollbar {
-    display: none
+    display: none;
 }
 
 .d-card {
@@ -857,13 +740,13 @@ body {
     overflow: hidden;
     position: relative;
     background: linear-gradient(180deg, #fff, #fbfdff);
-    box-shadow: var(--card-shadow)
+    box-shadow: var(--card-shadow);
 }
 
 .d-card img {
     width: 100%;
     height: 100%;
-    object-fit: cover
+    object-fit: cover;
 }
 
 .d-title {
@@ -875,7 +758,7 @@ body {
     padding: 6px 10px;
     border-radius: 10px;
     font-weight: 700;
-    font-size: .95rem
+    font-size: .95rem;
 }
 
 .scroll-btn {
@@ -887,48 +770,45 @@ body {
     color: #fff;
     font-weight: 800;
     cursor: pointer;
-    box-shadow: 0 8px 18px rgba(36, 60, 122, 0.12)
+    box-shadow: 0 8px 18px rgba(36, 60, 122, 0.12);
 }
 
 .scroll-btn:hover {
-    transform: translateY(-2px)
+    transform: translateY(-2px);
 }
 
 .view-more {
-    margin-top: 14px
+    margin-top: 14px;
 }
 
 .features {
-    padding: 48px 0
+    padding: 48px 0;
 }
 
 .features-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 18px
+    gap: 18px;
 }
 
 .feature {
     background: var(--card);
     padding: 18px;
     border-radius: 12px;
-    box-shadow: var(--card-shadow)
+    box-shadow: var(--card-shadow);
 }
 
 .feature h3 {
-    margin: 0 0 8px 0
+    margin: 0 0 8px 0;
 }
 
-/* _______ FLIGHT DETAIL SECTION _______ */
-
-/* ========== FLIGHT DETAIL (restored) ========== */
+/* ========== FLIGHT DETAIL ========== */
 .flight-detail {
     position: relative;
     padding: clamp(40px, 6vw, 80px) 0;
     overflow: hidden;
 }
 
-/* Grid */
 .flight-detail-grid {
     display: grid;
     grid-template-columns: 1fr 1.1fr;
@@ -942,7 +822,6 @@ body {
     }
 }
 
-/* Left */
 .flight-detail-intro h2 {
     font-weight: 700;
     font-size: clamp(2rem, 4.6vw, 48px);
@@ -956,7 +835,6 @@ body {
     color: var(--text-dark);
 }
 
-/* Right cards */
 .flight-detail-features {
     display: grid;
     gap: 18px;
@@ -968,14 +846,12 @@ body {
     gap: 16px;
     align-items: center;
     background: #7e8097;
-    /* muted lavender-gray */
     color: #fff;
     border-radius: 22px;
     box-shadow: 0 10px 18px rgba(11, 35, 64, .08);
     padding: 18px;
 }
 
-/* Icon */
 .fd-icon {
     position: relative;
     width: 84px;
@@ -996,7 +872,6 @@ body {
     border-radius: inherit;
 }
 
-/* Text */
 .fd-text h3 {
     font-weight: 700;
     font-size: clamp(1.15rem, 2.2vw, 24px);
@@ -1008,8 +883,7 @@ body {
     color: rgba(255, 255, 255, .92);
 }
 
-/* ---------- Idle-until-scroll ---------- */
-/* Start idle (hidden / offset) */
+/* Idle-until-scroll */
 .flight-detail .flight-detail-intro h2,
 .flight-detail .flight-detail-intro p,
 .flight-detail .fd-card {
@@ -1018,7 +892,6 @@ body {
     will-change: transform, opacity;
 }
 
-/* When section is in view, animate in */
 .flight-detail.in-view .flight-detail-intro h2 {
     animation: fdSlide .55s ease forwards;
 }
@@ -1043,7 +916,6 @@ body {
     animation-delay: .40s;
 }
 
-/* Keyframes */
 @keyframes fdFade {
     to {
         opacity: 1;
@@ -1058,7 +930,6 @@ body {
     }
 }
 
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
 
     .flight-detail .flight-detail-intro h2,
@@ -1070,9 +941,7 @@ body {
     }
 }
 
-
-/* _______ QUOTE SECTION _______ */
-/* ===== Aether Quote Card (left-aligned) ===== */
+/* ========== QUOTE ========== */
 :root {
     --quote-bg: #cbd0e3;
     --quote-text: #0b1220;
@@ -1080,20 +949,17 @@ body {
     --quote-pad: clamp(24px, 5vw, 72px);
     /* base padding */
     --quote-mark-size: clamp(40px, 10vw, 120px);
-    /* size of “ ” marks */
 }
 
 .quote {
     padding: clamp(28px, 4vw, 56px) 0;
 }
 
-/* ===== Aether Quote Card (left-aligned, shifted right) ===== */
 .quote .quote-card {
     position: relative;
     background: var(--quote-bg);
     color: var(--quote-text);
     border-radius: var(--quote-radius);
-    /* adds more right-side air and shifts everything inward */
     padding: var(--quote-pad);
     padding-left: calc(20% + var(--quote-mark-size)*0.5);
     padding-right: calc(var(--quote-mark-size)*0.5);
@@ -1101,7 +967,6 @@ body {
     overflow: hidden;
 }
 
-/* big decorative quotes (behind content) */
 .quote .quote-card::before,
 .quote .quote-card::after {
     position: absolute;
@@ -1111,7 +976,6 @@ body {
     color: var(--quote-text);
     opacity: .9;
     z-index: 0;
-    /* sit behind text */
     pointer-events: none;
     font-size: var(--quote-mark-size);
 }
@@ -1128,7 +992,6 @@ body {
     right: clamp(12px, 2vw, 24px);
 }
 
-/* quote text */
 .q-text {
     position: relative;
     z-index: 1;
@@ -1140,7 +1003,6 @@ body {
     line-height: 1.15;
 }
 
-/* citation */
 .q-cite {
     position: relative;
     z-index: 1;
@@ -1154,7 +1016,6 @@ body {
     font-style: normal;
 }
 
-/* small screens: soften the giant quotes */
 @media (max-width:420px) {
     :root {
         --quote-mark-size: clamp(36px, 18vw, 72px);
@@ -1165,10 +1026,7 @@ body {
     }
 }
 
-
-
-/* _______ BOOKING SECTION _______ */
-/* ===== Booking Made Easy (layout) ===== */
+/* ========== BOOKING MADE EASY ========== */
 .booking-made {
     padding: clamp(40px, 6vw, 80px) 0;
 }
@@ -1182,51 +1040,52 @@ body {
 
 .bm-left {
     display: grid;
-    gap: clamp(18px, 2.4vw, 28px);
+    gap: 18px;
 }
 
 .bm-card {
     display: grid;
-    grid-template-columns: 104px 1fr;
+    grid-template-columns: 84px 1fr;
     align-items: center;
-    gap: clamp(16px, 2vw, 22px);
+    gap: 16px;
     background: #7e8097;
     color: #fff;
-    border-radius: 28px;
-    padding: clamp(16px, 2.4vw, 22px);
-    box-shadow: 0 12px 22px rgba(11, 35, 64, 0.10);
+    border-radius: 22px;
+    padding: 18px;
+    box-shadow: 0 10px 18px rgba(11, 35, 64, .08);
 }
 
 .bm-icon {
-    width: 104px;
-    height: 104px;
+    position: relative;
+    width: 84px;
+    height: 84px;
     border-radius: 18px;
-    background: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    overflow: hidden;
+    background-color: #e9e9ef;
     box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .06);
 }
 
 .bm-icon img {
-    width: 60%;
-    height: auto;
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 70%;
+    height: 70%;
     object-fit: contain;
-    display: block;
 }
 
 .bm-text h4 {
     margin: 0 0 6px 0;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 700;
-    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-size: clamp(1.15rem, 2.2vw, 24px);
     line-height: 1.2;
 }
 
 .bm-text p {
     margin: 0;
     color: rgba(255, 255, 255, .92);
-    font-size: clamp(.95rem, 1.6vw, 1.05rem);
+    font-size: 1rem;
 }
 
 .bm-right {
@@ -1258,14 +1117,11 @@ body {
     position: absolute;
     right: 0;
     bottom: -30%;
-    /* moved down 30% more */
     width: min(44.2%, 289px);
-    /* 15% smaller (from 52% → 44.2%) */
     height: auto;
     opacity: .95;
     pointer-events: none;
 }
-
 
 @media (max-width: 980px) {
     .bm-grid {
@@ -1282,9 +1138,7 @@ body {
     }
 }
 
-/* ===== Idle-until-scroll animation states ===== */
-
-/* Start idle (hidden / slightly offset) */
+/* Idle-until-scroll */
 .bm-card,
 .bm-right h2,
 .bm-right .bm-lead,
@@ -1294,7 +1148,6 @@ body {
     will-change: transform, opacity;
 }
 
-/* When the section is in view, animate in */
 .booking-made.in-view .bm-card {
     animation: bmFade .6s ease forwards;
 }
@@ -1311,7 +1164,6 @@ body {
     animation-delay: .40s;
 }
 
-/* Right column slides from the right a touch */
 .booking-made.in-view .bm-right h2,
 .booking-made.in-view .bm-right .bm-lead,
 .booking-made.in-view .bm-right .bm-cta {
@@ -1331,7 +1183,6 @@ body {
     animation-delay: .45s;
 }
 
-/* Keyframes */
 @keyframes bmFade {
     to {
         opacity: 1;
@@ -1346,7 +1197,6 @@ body {
     }
 }
 
-/* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
 
     .bm-card,
@@ -1359,205 +1209,50 @@ body {
     }
 }
 
-
-/* _________ STORIES SECTION _______ */
-
+/* ========== STORIES (placeholder styles kept) ========== */
 .stories {
-    padding: 48px 0
+    padding: 48px 0;
 }
 
 .stories-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 18px
+    gap: 18px;
 }
 
 .story blockquote {
     background: var(--primary-600);
     color: #fff;
     padding: 18px;
-    border-radius: 10px
+    border-radius: 10px;
 }
 
 .story .meta {
     margin-top: 8px;
-    color: var(--muted)
+    color: var(--muted);
 }
 
-.site-footer {
-    background: transparent;
-    padding: 34px 0;
-    border-top: 1px solid rgba(11, 35, 64, 0.03)
-}
-
-.footer-inner {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    align-items: center
-}
-
-/* ========== RESPONSIVE ========== */
-@media (max-width: 980px) {
-    .hero-inner {
-        grid-template-columns: 1fr 320px
-    }
-
-    .features-grid {
-        grid-template-columns: repeat(2, 1fr)
-    }
-
-    .booking {
-        grid-template-columns: 1fr 1fr
-    }
-}
-
-@media (max-width: 760px) {
-    .menu-toggle {
-        display: block
-    }
-
-    .nav-links {
-        display: none;
-        width: 100%;
-        flex-direction: column;
-        gap: 12px;
-        margin: 10px 0
-    }
-
-    .navbar.active .nav-links {
-        display: flex
-    }
-
-    .search-signup {
-        width: 100%;
-        flex-direction: column;
-        gap: 10px;
-        margin-top: 10px
-    }
-
-    .navbar {
-        padding: 14px 20px
-    }
-
-    .hero-inner {
-        grid-template-columns: 1fr;
-        gap: 18px
-    }
-
-    .hero-aside {
-        order: 2
-    }
-
-    .hero-content {
-        order: 1
-    }
-
-    .search-card {
-        width: 100%
-    }
-
-    .membership-cards {
-        display: flex;
-        align-items: stretch;
-        /* equal heights */
-        gap: 16px;
-    }
-
-    .m-card {
-        flex: 1 0 0;
-        /* basis 0 avoids width recalcs */
-        transition: flex-grow .35s ease !important;
-        /* ONLY animate width */
-        will-change: flex-grow;
-    }
-
-    .m-card.active {
-        flex-grow: 2.2;
-        /* widen active card */
-    }
-
-    .m-card:not(.active) {
-        filter: grayscale(.08) brightness(.95);
-        /* visual only; no transforms */
-    }
-
-    .m-card.swapping {
-        transition: none !important;
-    }
-
-
-    .features-grid {
-        grid-template-columns: 1fr
-    }
-
-    .booking {
-        grid-template-columns: 1fr
-    }
-
-    .stories-grid {
-        grid-template-columns: 1fr
-    }
-}
-
-/* Collapsible search behaviour on very small screens */
-@media (max-width: 500px) {
-    .search-box input {
-        width: 0;
-        padding: 0;
-        transition: width .28s ease, padding .28s ease;
-        overflow: hidden
-    }
-
-    .search-box.active input {
-        width: 140px;
-        padding: 6px
-    }
-
-    .search-box {
-        justify-content: flex-end;
-        width: 100%
-    }
-
-    .search-btn {
-        font-size: 18px
-    }
-}
-
-/* ================================
-   FLIGHT SEARCH BAR (static UI)
-   Prefixed with .ab- to avoid conflicts
-================================== */
-
-/* Add more spacing below the hero background */
+/* ========== AB SEARCH (below hero) ========== */
 .ab-search {
     position: relative;
     width: 100%;
-    /* match hero width */
     background: transparent;
-    /* no separate background color */
     margin-top: -40px;
-    /* pulls search closer to the hero image */
+    /* slight overlap */
     z-index: 5;
-    /* keeps it on top if it overlaps */
 }
 
-/* slight overlap with hero like airline sites */
 @media (max-width: 760px) {
     .ab-search {
         margin-top: 12px;
     }
 }
 
-/* White search box */
 .ab-card {
     width: 100%;
     max-width: var(--container);
-    /* align with navbar/container */
     margin: 0 auto;
-    /* center align */
     background: var(--card);
-    /* white */
     border: 1px solid rgba(11, 35, 64, 0.08);
     border-radius: 14px;
     box-shadow: 0 10px 24px rgba(11, 35, 64, 0.08);
@@ -1565,19 +1260,14 @@ body {
     padding-bottom: 10px;
 }
 
-
-
-/* More balanced spacing inside */
 .ab-grid {
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: clamp(20px, 2vw, 36px);
     align-items: end;
     padding: clamp(18px, 2vw, 40px);
-    /* padding: clamp(18px, 2vw, 28px) clamp(22px, 3vw, 40px); */
 }
 
-/* LEFT SIDE (HNL ↔ TO) */
 .ab-iata {
     display: grid;
     gap: 8px;
@@ -1593,7 +1283,6 @@ body {
 .ab-code {
     font-weight: 400;
     font-size: clamp(36px, 4.2vw, 56px);
-    /* fluid size */
     letter-spacing: .03em;
     text-align: center;
     color: var(--text-dark);
@@ -1625,7 +1314,6 @@ body {
     padding: 2px 6px 0;
 }
 
-/* RIGHT SIDE (tabs + button) */
 .ab-controls {
     display: grid;
     grid-template-columns: auto auto auto 1fr;
@@ -1639,9 +1327,7 @@ body {
     gap: 8px;
     padding-bottom: 6px;
     border-bottom: 3px solid #0f172a;
-    /* underline look */
     font-size: clamp(18px, 1rem + 0.7vw, 22px);
-    /* fluid size */
     font-weight: 450;
     white-space: nowrap;
     color: var(--text-dark);
@@ -1662,7 +1348,6 @@ body {
     color: #374151;
 }
 
-/* Button: navy + generous padding */
 .ab-btn-search {
     justify-self: end;
     background: var(--primary);
@@ -1675,10 +1360,8 @@ body {
     font-weight: 700;
     box-shadow: 0 6px 0 rgba(0, 0, 0, .10), 0 8px 18px rgba(0, 0, 0, .12);
     cursor: default;
-    /* static UI */
 }
 
-/* Options row inside card */
 .ab-options {
     display: flex;
     align-items: center;
@@ -1706,7 +1389,6 @@ body {
     height: 18px;
 }
 
-/* Responsiveness */
 @media (max-width: 980px) {
     .ab-grid {
         grid-template-columns: 1fr;
@@ -1735,18 +1417,13 @@ body {
     }
 }
 
-/* ==== CLOUDS — HARD OVERRIDE (place last) ==== */
-
-/* ==== CLOUDS — SCROLL-REVEAL VERSION ==== */
-
-/* Ensure sections create the positioning context and don't clip clouds */
+/* ==== CLOUDS — SCROLL-REVEAL ==== */
 #memberships,
 #destinations {
     position: relative !important;
     overflow: visible !important;
 }
 
-/* Base cloud setup — idle state (hidden & offset) */
 .cloud-divider {
     position: absolute !important;
     right: 0 !important;
@@ -1755,14 +1432,10 @@ body {
     pointer-events: none;
     transform-origin: center;
     transform: translateX(100px) scale(0.75);
-    /* start off-screen to the right */
     opacity: 0;
-    /* invisible at start */
     z-index: 1;
-    /* NOTE: no animation here; added only when section is .in-view */
 }
 
-/* Keyframes (unchanged) */
 @keyframes cloudSlideIn {
     0% {
         transform: translateX(100px) scale(0.75);
@@ -1775,13 +1448,11 @@ body {
     }
 }
 
-/* Play the animation once the section is in view */
 #memberships.in-view .cloud-divider,
 #destinations.in-view .cloud-divider {
     animation: cloudSlideIn 1.2s ease-out forwards;
 }
 
-/* Staggered delays (now scoped to .in-view) */
 #memberships.in-view .cloud-1 {
     bottom: -90px !important;
     right: 290px !important;
@@ -1800,7 +1471,6 @@ body {
     animation-delay: 1.4s;
 }
 
-/* Reduced motion: show clouds without animating */
 @media (prefers-reduced-motion: reduce) {
 
     #memberships .cloud-divider,
@@ -1811,11 +1481,7 @@ body {
     }
 }
 
-
-/* Optional: visual debug */
-/* .cloud-divider { outline: 1px dashed magenta; } */
-
-/* === FORCE H1 + H3 TO MATCH (place last) === */
+/* === FORCE H1 + H3 TO MATCH (place last before sections) === */
 h1,
 h3,
 .m-card .m-overlay h3,
@@ -1834,9 +1500,534 @@ h3,
     font-style: normal !important;
 }
 
-/* keep sizes distinct so hierarchy stays clean */
 h3 {
     font-size: clamp(1.125rem, 1.6vw, 22px) !important;
     line-height: 1.25 !important;
     margin: 0 0 .25rem 0 !important;
+}
+
+/* ===== Journeys ===== */
+.journeys {
+    padding: clamp(36px, 5vw, 64px) 0;
+}
+
+.journeys-wrap {
+    background: #cbd0e3;
+    border-radius: 30px;
+    padding: clamp(24px, 4vw, 64px);
+    box-shadow: var(--card-shadow);
+    position: relative;
+}
+
+.journeys-title {
+    text-align: center;
+    font-weight: 700;
+    font-size: clamp(1.8rem, 4.6vw, 2.6rem);
+    line-height: 1.1;
+    color: var(--text-dark);
+    margin: 0 0 clamp(20px, 3vw, 32px) 0;
+}
+
+.t-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: clamp(18px, 3vw, 40px);
+    align-items: start;
+}
+
+.t-card {
+    border-radius: 22px;
+    padding: clamp(18px, 2.6vw, 28px);
+    box-shadow: 0 10px 18px rgba(11, 35, 64, .12);
+    display: grid;
+    gap: clamp(16px, 2vw, 22px);
+}
+
+.t-card--dark {
+    background: var(--primary);
+    color: #fff;
+    box-shadow: 0 10px 18px rgba(11, 35, 64, .25);
+}
+
+.t-card--light {
+    background: #fff;
+    color: var(--text-dark);
+    box-shadow: 0 12px 22px rgba(11, 35, 64, .12);
+}
+
+.t-quote {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: clamp(1rem, 1.8vw, 1.15rem);
+    line-height: 1.6;
+    color: currentColor;
+}
+
+.t-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: clamp(6px, 1vw, 10px);
+}
+
+.t-avatar {
+    width: clamp(56px, 6.5vw, 72px);
+    height: clamp(56px, 6.5vw, 72px);
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    background: #e9e9ef;
+    box-shadow: inset 0 0 0 2px rgba(0, 0, 0, .05);
+}
+
+.t-name {
+    margin: 0;
+    font-weight: 700;
+    line-height: 1.25;
+    color: currentColor;
+    font-size: clamp(1rem, 1.6vw, 1.2rem);
+}
+
+.t-name span {
+    font-weight: 400;
+    opacity: .9;
+}
+
+.t-cta {
+    margin-top: clamp(18px, 3vw, 26px);
+    border-radius: 999px;
+    padding: 12px 24px;
+    box-shadow: 0 10px 18px rgba(11, 35, 64, .18), 0 6px 0 rgba(0, 0, 0, .10);
+}
+
+/* Journeys reveal */
+#journeys .journeys-title,
+#journeys .t-card,
+#journeys .t-cta {
+    opacity: 0;
+    transform: translateY(10px);
+    will-change: opacity, transform;
+}
+
+#journeys.in-view .journeys-title {
+    animation: jSlide .55s ease forwards;
+}
+
+#journeys.in-view .t-card {
+    animation: jFade .6s ease forwards;
+}
+
+#journeys.in-view .t-card:nth-child(1) {
+    animation-delay: .12s;
+}
+
+/* left card */
+#journeys.in-view .t-card:nth-child(2) {
+    animation-delay: .28s;
+}
+
+/* right card */
+#journeys.in-view .t-cta {
+    animation: jSlide .5s ease .42s forwards;
+}
+
+@keyframes jFade {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes jSlide {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    #journeys .journeys-title,
+    #journeys .t-card,
+    #journeys .t-cta {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
+/* ========== RESPONSIVE LAYOUT HELPERS (non-footer) ========== */
+@media (max-width: 980px) {
+    .hero-inner {
+        grid-template-columns: 1fr 320px;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .booking {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 760px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 12px;
+        margin: 10px 0;
+    }
+
+    .navbar.active .nav-links {
+        display: flex;
+    }
+
+    .search-signup {
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .navbar {
+        padding: 14px 20px;
+    }
+
+    .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .hero-aside {
+        order: 2;
+    }
+
+    .hero-content {
+        order: 1;
+    }
+
+    .search-card {
+        width: 100%;
+    }
+
+    .membership-cards {
+        display: flex;
+        align-items: stretch;
+        gap: 16px;
+    }
+
+    .m-card {
+        flex: 1 0 0;
+        transition: flex-grow .35s ease !important;
+        will-change: flex-grow;
+    }
+
+    .m-card.active {
+        flex-grow: 2.2;
+    }
+
+    .m-card:not(.active) {
+        filter: grayscale(.08) brightness(.95);
+    }
+
+    .m-card.swapping {
+        transition: none !important;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .booking {
+        grid-template-columns: 1fr;
+    }
+
+    .stories-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Collapsible search behaviour on very small screens */
+@media (max-width: 500px) {
+    .search-box input {
+        width: 0;
+        padding: 0;
+        transition: width .28s ease, padding .28s ease;
+        overflow: hidden;
+    }
+
+    .search-box.active input {
+        width: 140px;
+        padding: 6px;
+    }
+
+    .search-box {
+        justify-content: flex-end;
+        width: 100%;
+    }
+
+    .search-btn {
+        font-size: 18px;
+    }
+}
+
+/* Accessibility helper */
+.sr-only {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* safety: avoid accidental horizontal scroll from other elements */
+html,
+body {
+    overflow-x: hidden;
+}
+
+/* (Keep .full-bleed utility for other areas; footer overrides below) */
+.full-bleed {
+    --bleed: calc(50vw - 50%);
+    margin-inline: calc(-1 * var(--bleed));
+    padding-inline: max(1rem, var(--bleed));
+}
+
+/* =========================
+   FOOTER (all styles moved to bottom)
+========================= */
+
+/* Final, guaranteed full-bleed footer using a 100vw pseudo background */
+.site-footer {
+    position: relative;
+    isolation: isolate;
+    /* keep ::before behind content */
+    color: #e9eef7;
+    border-top: none;
+    padding-block: clamp(40px, 6vw, 80px) 32px;
+    overflow: hidden;
+    /* hides any bleed artifacts */
+}
+
+/* Prevent the .full-bleed utility from fighting the pseudo background on the footer */
+.site-footer.full-bleed {
+    margin-inline: 0;
+    padding-inline: 0;
+}
+
+/* Full-viewport background layer */
+.site-footer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    left: 50%;
+    width: 100vw;
+    /* span the whole viewport width */
+    transform: translateX(-50%);
+    /* center the 100vw strip */
+    background: var(--primary);
+    /* your navy */
+    z-index: -1;
+    /* sit behind footer content */
+}
+
+/* Keep inner content aligned to your container width */
+.footer-inner,
+.footer-bottom {
+    max-width: var(--container);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/* Grid layout for main footer row */
+.footer-inner {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr 1.2fr;
+    gap: clamp(18px, 2.5vw, 28px);
+    align-items: start;
+}
+
+/* Brand */
+.f-logo {
+    margin: 0 0 10px 0;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    color: #fff;
+}
+
+.f-logo-big {
+    display: block;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    font-size: clamp(28px, 4.4vw, 48px);
+    letter-spacing: 0.06em;
+}
+
+.f-logo-small {
+    display: block;
+    margin-top: 4px;
+    font-weight: 700;
+    font-size: clamp(10px, 1.1vw, 14px);
+    letter-spacing: 0.18em;
+}
+
+.f-tag {
+    margin: 14px 0 28px;
+    color: rgba(255, 255, 255, .85);
+    font-size: clamp(1.08rem, 1.56vw, 1.2rem);
+    /* ~20% larger per your last ask */
+    max-width: 28ch;
+}
+
+.f-mark {
+    width: clamp(80px, 18vw, 120px);
+    height: auto;
+    opacity: .9;
+}
+
+/* Columns */
+.f-col h4,
+.f-news h4 {
+    margin: 0 0 12px 0;
+    color: #fff;
+    font-weight: 700;
+    font-size: clamp(1rem, 1.6vw, 1.1rem);
+}
+
+.f-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+}
+
+.f-links a {
+    color: rgba(255, 255, 255, .9);
+    text-decoration: none;
+}
+
+.f-links a:hover {
+    text-decoration: underline;
+}
+
+/* Newsletter */
+.f-news .newsletter {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+    align-items: center;
+    background: rgba(255, 255, 255, .15);
+    padding: 6px;
+    border-radius: 999px;
+    width: min(360px, 100%);
+}
+
+.f-news .newsletter input {
+    appearance: none;
+    border: 0;
+    outline: 0;
+    background: rgba(255, 255, 255, .85);
+    color: #0b1220;
+    padding: 12px 16px;
+    border-radius: 999px;
+    font-size: 14px;
+}
+
+.f-news .newsletter input::placeholder {
+    color: #6b7482;
+}
+
+.f-news .newsletter button {
+    border: 0;
+    background: #e6e9f2;
+    color: #0b1220;
+    border-radius: 999px;
+    padding: 10px 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.f-news .newsletter button:hover {
+    filter: brightness(.95);
+}
+
+/* Social */
+.f-social {
+    margin-top: 18px;
+}
+
+.f-social h5 {
+    margin: 0 0 10px 0;
+    font-size: .95rem;
+    color: rgba(255, 255, 255, .92);
+}
+
+.icons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.icon-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, .12);
+    border: 1px solid rgba(255, 255, 255, .3);
+    overflow: hidden;
+    transition: background .25s ease, transform .25s ease;
+}
+
+.icon-btn:hover {
+    background: rgba(255, 255, 255, .25);
+    transform: translateY(-2px);
+}
+
+.icon-btn img {
+    width: 36px;
+    height: 36px;
+    object-fit: fill;
+    display: block;
+}
+
+/* Bottom row */
+.footer-bottom {
+    margin-top: clamp(16px, 3vw, 24px);
+    border-top: 1px solid rgba(255, 255, 255, .12);
+    padding-top: 16px;
+}
+
+.footer-bottom p {
+    margin: 0;
+    color: rgba(255, 255, 255, .8);
+    font-size: .9rem;
+}
+
+/* Footer responsiveness */
+@media (max-width: 980px) {
+    .footer-inner {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .footer-inner {
+        grid-template-columns: 1fr;
+    }
 }

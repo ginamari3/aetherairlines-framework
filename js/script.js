@@ -121,3 +121,83 @@ document.addEventListener('DOMContentLoaded', () => {
     */
 
 });
+
+
+// --- Reveal on scroll: Booking, Flight Detail, Cloud Sections ---
+document.addEventListener('DOMContentLoaded', () => {
+    const revealSections = document.querySelectorAll(
+        '.booking-made, .flight-detail, #memberships, #destinations'
+    );
+    if (!revealSections.length) return;
+
+    if ('IntersectionObserver' in window) {
+        const obs = new IntersectionObserver(
+            (entries, o) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view'); // triggers CSS animations
+                        o.unobserve(entry.target);             // play once
+                    }
+                });
+            },
+            { root: null, threshold: 0.2 } // reveal when ~20% visible
+        );
+        revealSections.forEach(sec => obs.observe(sec));
+    } else {
+        // Fallback: show everything
+        revealSections.forEach(sec => sec.classList.add('in-view'));
+    }
+});
+
+
+// --- Reveal sections on scroll: Booking + Flight Detail ---
+document.addEventListener('DOMContentLoaded', () => {
+    const revealSections = document.querySelectorAll('.flight-detail');
+    if (!revealSections.length) return;
+
+    if ('IntersectionObserver' in window) {
+        const obs = new IntersectionObserver(
+            (entries, o) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view'); // triggers the CSS animations
+                        o.unobserve(entry.target);             // play once
+                    }
+                });
+            },
+            { root: null, threshold: 0.2 } // ~20% visible
+        );
+
+        revealSections.forEach(sec => obs.observe(sec));
+    } else {
+        // Fallback for very old browsers
+        revealSections.forEach(sec => sec.classList.add('in-view'));
+    }
+});
+
+
+// --- Booking Made Easy: reveal on scroll ---
+document.addEventListener('DOMContentLoaded', () => {
+    const bookingSection = document.querySelector('.booking-made');
+
+    if (!bookingSection) return;
+
+    // If IntersectionObserver is available, reveal when ~20% is visible
+    if ('IntersectionObserver' in window) {
+        const obs = new IntersectionObserver(
+            (entries, o) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        bookingSection.classList.add('in-view');
+                        o.unobserve(entry.target); // play once
+                    }
+                });
+            },
+            { root: null, threshold: 0.2 }
+        );
+        obs.observe(bookingSection);
+    } else {
+        // Fallback for very old browsers: just show
+        bookingSection.classList.add('in-view');
+    }
+});

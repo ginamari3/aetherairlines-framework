@@ -919,54 +919,448 @@ body {
     margin: 0 0 8px 0
 }
 
-.quote {
-    padding: 36px 0
+/* _______ FLIGHT DETAIL SECTION _______ */
+
+/* ========== FLIGHT DETAIL (restored) ========== */
+.flight-detail {
+    position: relative;
+    padding: clamp(40px, 6vw, 80px) 0;
+    overflow: hidden;
 }
 
-.quote blockquote {
-    background: var(--card);
-    padding: 28px;
-    border-radius: 12px;
-    font-family: "Playfair Display", serif;
-    font-size: 1.25rem;
+/* Grid */
+.flight-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: clamp(24px, 4vw, 48px);
+    align-items: start;
+}
+
+@media (max-width: 900px) {
+    .flight-detail-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Left */
+.flight-detail-intro h2 {
+    font-weight: 700;
+    font-size: clamp(2rem, 4.6vw, 48px);
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
     color: var(--text-dark);
-    box-shadow: var(--card-shadow)
 }
 
-.quote cite {
+.flight-detail-intro p {
+    max-width: 46ch;
+    color: var(--text-dark);
+}
+
+/* Right cards */
+.flight-detail-features {
+    display: grid;
+    gap: 18px;
+}
+
+.fd-card {
+    display: grid;
+    grid-template-columns: 84px 1fr;
+    gap: 16px;
+    align-items: center;
+    background: #7e8097;
+    /* muted lavender-gray */
+    color: #fff;
+    border-radius: 22px;
+    box-shadow: 0 10px 18px rgba(11, 35, 64, .08);
+    padding: 18px;
+}
+
+/* Icon */
+.fd-icon {
+    position: relative;
+    width: 84px;
+    height: 84px;
+    border-radius: 18px;
+    overflow: hidden;
+    background-color: #e9e9ef;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .06);
+}
+
+.fd-icon img {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+    border-radius: inherit;
+}
+
+/* Text */
+.fd-text h3 {
+    font-weight: 700;
+    font-size: clamp(1.15rem, 2.2vw, 24px);
+    margin: 0 0 6px 0;
+}
+
+.fd-text p {
+    margin: 0;
+    color: rgba(255, 255, 255, .92);
+}
+
+/* ---------- Idle-until-scroll ---------- */
+/* Start idle (hidden / offset) */
+.flight-detail .flight-detail-intro h2,
+.flight-detail .flight-detail-intro p,
+.flight-detail .fd-card {
+    opacity: 0;
+    transform: translateY(10px);
+    will-change: transform, opacity;
+}
+
+/* When section is in view, animate in */
+.flight-detail.in-view .flight-detail-intro h2 {
+    animation: fdSlide .55s ease forwards;
+}
+
+.flight-detail.in-view .flight-detail-intro p {
+    animation: fdSlide .55s ease .12s forwards;
+}
+
+.flight-detail.in-view .flight-detail-features .fd-card {
+    animation: fdFade .6s ease forwards;
+}
+
+.flight-detail.in-view .flight-detail-features .fd-card:nth-child(1) {
+    animation-delay: .10s;
+}
+
+.flight-detail.in-view .flight-detail-features .fd-card:nth-child(2) {
+    animation-delay: .25s;
+}
+
+.flight-detail.in-view .flight-detail-features .fd-card:nth-child(3) {
+    animation-delay: .40s;
+}
+
+/* Keyframes */
+@keyframes fdFade {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fdSlide {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+    .flight-detail .flight-detail-intro h2,
+    .flight-detail .flight-detail-intro p,
+    .flight-detail .fd-card {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
+
+/* _______ QUOTE SECTION _______ */
+/* ===== Aether Quote Card (left-aligned) ===== */
+:root {
+    --quote-bg: #cbd0e3;
+    --quote-text: #0b1220;
+    --quote-radius: 28px;
+    --quote-pad: clamp(24px, 5vw, 72px);
+    /* base padding */
+    --quote-mark-size: clamp(40px, 10vw, 120px);
+    /* size of “ ” marks */
+}
+
+.quote {
+    padding: clamp(28px, 4vw, 56px) 0;
+}
+
+/* ===== Aether Quote Card (left-aligned, shifted right) ===== */
+.quote .quote-card {
+    position: relative;
+    background: var(--quote-bg);
+    color: var(--quote-text);
+    border-radius: var(--quote-radius);
+    /* adds more right-side air and shifts everything inward */
+    padding: var(--quote-pad);
+    padding-left: calc(20% + var(--quote-mark-size)*0.5);
+    padding-right: calc(var(--quote-mark-size)*0.5);
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+}
+
+/* big decorative quotes (behind content) */
+.quote .quote-card::before,
+.quote .quote-card::after {
+    position: absolute;
+    font-family: "Playfair Display", Georgia, serif;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--quote-text);
+    opacity: .9;
+    z-index: 0;
+    /* sit behind text */
+    pointer-events: none;
+    font-size: var(--quote-mark-size);
+}
+
+.quote .quote-card::before {
+    content: "“";
+    top: clamp(8px, 1.6vw, 16px);
+    left: clamp(12px, 2vw, 24px);
+}
+
+.quote .quote-card::after {
+    content: "”";
+    bottom: clamp(8px, 1.6vw, 16px);
+    right: clamp(12px, 2vw, 24px);
+}
+
+/* quote text */
+.q-text {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    text-align: left;
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    font-size: clamp(1.6rem, 5.6vw, 4.25rem);
+    line-height: 1.15;
+}
+
+/* citation */
+.q-cite {
+    position: relative;
+    z-index: 1;
     display: block;
-    margin-top: 8px;
-    color: var(--muted);
-    font-weight: 600
+    margin-top: clamp(12px, 1.8vw, 20px);
+    padding-right: calc(var(--quote-mark-size)*0.6);
+    text-align: right;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: clamp(.9rem, 1.6vw, 1.1rem);
+    color: rgba(11, 18, 32, .85);
+    font-style: normal;
 }
 
-.booking {
-    padding: 48px 0;
+/* small screens: soften the giant quotes */
+@media (max-width:420px) {
+    :root {
+        --quote-mark-size: clamp(36px, 18vw, 72px);
+    }
+
+    .q-cite {
+        padding-right: calc(var(--quote-mark-size)*0.7);
+    }
+}
+
+
+
+/* _______ BOOKING SECTION _______ */
+/* ===== Booking Made Easy (layout) ===== */
+.booking-made {
+    padding: clamp(40px, 6vw, 80px) 0;
+}
+
+.bm-grid {
     display: grid;
-    grid-template-columns: 1fr 360px;
-    gap: 20px;
-    align-items: center
+    grid-template-columns: 1.1fr 1fr;
+    gap: clamp(24px, 4vw, 56px);
+    align-items: start;
 }
 
-.booking-card {
-    background: var(--card);
-    padding: 22px;
-    border-radius: 14px;
-    box-shadow: var(--card-shadow)
-}
-
-.booking-features {
+.bm-left {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px
+    gap: clamp(18px, 2.4vw, 28px);
 }
 
-.bf {
-    background: var(--card);
-    padding: 14px;
-    border-radius: 10px;
-    box-shadow: 0 6px 18px rgba(11, 35, 64, 0.04)
+.bm-card {
+    display: grid;
+    grid-template-columns: 104px 1fr;
+    align-items: center;
+    gap: clamp(16px, 2vw, 22px);
+    background: #7e8097;
+    color: #fff;
+    border-radius: 28px;
+    padding: clamp(16px, 2.4vw, 22px);
+    box-shadow: 0 12px 22px rgba(11, 35, 64, 0.10);
 }
+
+.bm-icon {
+    width: 104px;
+    height: 104px;
+    border-radius: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .06);
+}
+
+.bm-icon img {
+    width: 60%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+.bm-text h4 {
+    margin: 0 0 6px 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    line-height: 1.2;
+}
+
+.bm-text p {
+    margin: 0;
+    color: rgba(255, 255, 255, .92);
+    font-size: clamp(.95rem, 1.6vw, 1.05rem);
+}
+
+.bm-right {
+    position: relative;
+    min-height: 320px;
+}
+
+.bm-right h2 {
+    font-weight: 700;
+    color: var(--text-dark);
+    font-size: clamp(1.8rem, 4.6vw, 2.6rem);
+    line-height: 1.1;
+    margin: 0 0 .5rem 0;
+}
+
+.bm-lead {
+    margin: 0 0 18px 0;
+    color: var(--text-dark);
+    max-width: 40ch;
+}
+
+.bm-cta {
+    border-radius: 999px;
+    padding: 12px 22px;
+    box-shadow: 0 8px 18px rgba(36, 60, 122, .18), 0 6px 0 rgba(0, 0, 0, .10);
+}
+
+.bm-mark {
+    position: absolute;
+    right: 0;
+    bottom: -30%;
+    /* moved down 30% more */
+    width: min(44.2%, 289px);
+    /* 15% smaller (from 52% → 44.2%) */
+    height: auto;
+    opacity: .95;
+    pointer-events: none;
+}
+
+
+@media (max-width: 980px) {
+    .bm-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bm-right {
+        order: -1;
+        min-height: 0;
+    }
+
+    .bm-mark {
+        display: none;
+    }
+}
+
+/* ===== Idle-until-scroll animation states ===== */
+
+/* Start idle (hidden / slightly offset) */
+.bm-card,
+.bm-right h2,
+.bm-right .bm-lead,
+.bm-right .bm-cta {
+    opacity: 0;
+    transform: translateY(10px);
+    will-change: transform, opacity;
+}
+
+/* When the section is in view, animate in */
+.booking-made.in-view .bm-card {
+    animation: bmFade .6s ease forwards;
+}
+
+.booking-made.in-view .bm-card:nth-child(1) {
+    animation-delay: .10s;
+}
+
+.booking-made.in-view .bm-card:nth-child(2) {
+    animation-delay: .25s;
+}
+
+.booking-made.in-view .bm-card:nth-child(3) {
+    animation-delay: .40s;
+}
+
+/* Right column slides from the right a touch */
+.booking-made.in-view .bm-right h2,
+.booking-made.in-view .bm-right .bm-lead,
+.booking-made.in-view .bm-right .bm-cta {
+    transform: translateX(10px);
+    animation: bmSlide .5s ease forwards;
+}
+
+.booking-made.in-view .bm-right h2 {
+    animation-delay: .15s;
+}
+
+.booking-made.in-view .bm-right .bm-lead {
+    animation-delay: .30s;
+}
+
+.booking-made.in-view .bm-right .bm-cta {
+    animation-delay: .45s;
+}
+
+/* Keyframes */
+@keyframes bmFade {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bmSlide {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+    .bm-card,
+    .bm-right h2,
+    .bm-right .bm-lead,
+    .bm-right .bm-cta {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
+
+/* _________ STORIES SECTION _______ */
 
 .stories {
     padding: 48px 0
@@ -1343,6 +1737,8 @@ body {
 
 /* ==== CLOUDS — HARD OVERRIDE (place last) ==== */
 
+/* ==== CLOUDS — SCROLL-REVEAL VERSION ==== */
+
 /* Ensure sections create the positioning context and don't clip clouds */
 #memberships,
 #destinations {
@@ -1350,7 +1746,7 @@ body {
     overflow: visible !important;
 }
 
-/* Base cloud setup + animation */
+/* Base cloud setup — idle state (hidden & offset) */
 .cloud-divider {
     position: absolute !important;
     right: 0 !important;
@@ -1362,11 +1758,11 @@ body {
     /* start off-screen to the right */
     opacity: 0;
     /* invisible at start */
-    animation: cloudSlideIn 1.2s ease-out forwards;
     z-index: 1;
+    /* NOTE: no animation here; added only when section is .in-view */
 }
 
-/* Keyframes for sliding clouds in from right */
+/* Keyframes (unchanged) */
 @keyframes cloudSlideIn {
     0% {
         transform: translateX(100px) scale(0.75);
@@ -1379,24 +1775,42 @@ body {
     }
 }
 
-/* Staggered delays for sequential entrance */
-#memberships .cloud-1 {
+/* Play the animation once the section is in view */
+#memberships.in-view .cloud-divider,
+#destinations.in-view .cloud-divider {
+    animation: cloudSlideIn 1.2s ease-out forwards;
+}
+
+/* Staggered delays (now scoped to .in-view) */
+#memberships.in-view .cloud-1 {
     bottom: -90px !important;
     right: 290px !important;
     animation-delay: 0.2s;
 }
 
-#destinations .cloud-2 {
+#destinations.in-view .cloud-2 {
     top: -80px !important;
     right: 90px !important;
     animation-delay: 0.8s;
 }
 
-#memberships .cloud-3 {
+#memberships.in-view .cloud-3 {
     bottom: -90px !important;
     right: -120px !important;
     animation-delay: 1.4s;
 }
+
+/* Reduced motion: show clouds without animating */
+@media (prefers-reduced-motion: reduce) {
+
+    #memberships .cloud-divider,
+    #destinations .cloud-divider {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: translateX(0) scale(0.75) !important;
+    }
+}
+
 
 /* Optional: visual debug */
 /* .cloud-divider { outline: 1px dashed magenta; } */
@@ -1425,127 +1839,4 @@ h3 {
     font-size: clamp(1.125rem, 1.6vw, 22px) !important;
     line-height: 1.25 !important;
     margin: 0 0 .25rem 0 !important;
-}
-
-
-
-/* ========== FLIGHT DETAIL ========== */
-.flight-detail {
-    position: relative;
-    padding: clamp(40px, 6vw, 80px) 0;
-    overflow: hidden;
-}
-
-/* Grid layout: two columns on desktop */
-.flight-detail-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.1fr;
-    gap: clamp(24px, 4vw, 48px);
-    align-items: start;
-}
-
-@media (max-width: 900px) {
-    .flight-detail-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* LEFT side */
-.flight-detail-intro h2 {
-    font-weight: 700;
-    font-size: clamp(2rem, 4.6vw, 48px);
-    line-height: 1.1;
-    margin-bottom: 0.75rem;
-    color: var(--text-dark);
-}
-
-.flight-detail-intro p {
-    max-width: 46ch;
-    color: var(--text-dark);
-}
-
-/* RIGHT side cards */
-.flight-detail-features {
-    display: grid;
-    gap: 18px;
-}
-
-/* Card style */
-.fd-card {
-    display: grid;
-    grid-template-columns: 84px 1fr;
-    gap: 16px;
-    align-items: center;
-    background: #7e8097;
-    /* muted lavender-gray */
-    color: #fff;
-    border-radius: 22px;
-    box-shadow: 0 10px 18px rgba(11, 35, 64, .08);
-    padding: 18px;
-}
-
-/* Icon block */
-.fd-icon {
-    position: relative;
-    width: 84px;
-    height: 84px;
-    border-radius: 18px;
-    overflow: hidden;
-    /* keeps corners clean */
-    background-color: #e9e9ef;
-    /* white box color */
-    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .06);
-}
-
-.fd-icon img {
-    position: absolute;
-    inset: 0;
-    /* stretch to edges */
-    width: 100%;
-    height: 100%;
-    object-fit: fill;
-    /* stretch image to fit entire box */
-    border-radius: inherit;
-    /* match rounded edges */
-}
-
-
-
-
-/* Text inside card */
-.fd-text h3 {
-    font-weight: 700;
-    font-size: clamp(1.15rem, 2.2vw, 24px);
-    margin: 0 0 6px 0;
-}
-
-.fd-text p {
-    margin: 0;
-    color: rgba(255, 255, 255, .92);
-}
-
-/* Fade-in animation */
-.fd-card {
-    opacity: 0;
-    transform: translateY(10px);
-    animation: fdFade .6s ease forwards;
-}
-
-.fd-card:nth-child(1) {
-    animation-delay: .1s
-}
-
-.fd-card:nth-child(2) {
-    animation-delay: .25s
-}
-
-.fd-card:nth-child(3) {
-    animation-delay: .4s
-}
-
-@keyframes fdFade {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }

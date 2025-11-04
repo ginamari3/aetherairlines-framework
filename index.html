@@ -252,7 +252,7 @@
             <div class="flight-detail-features">
                 <article class="fd-card">
                     <div class="fd-icon">
-                        <img src="../aetherairlines-framework/img/5-1-detail-chair-icon.jpg" alt="Flight Seat Icon">
+                        <img src="../aetherairlines-framework/img/5-1-2-detail-chair-icon.png" alt="Flight Seat Icon">
                     </div>
                     <div class="fd-text">
                         <h3>Intuitive Comfort</h3>
@@ -262,7 +262,7 @@
 
                 <article class="fd-card">
                     <div class="fd-icon">
-                        <img src="../aetherairlines-framework/img/5-2-detail-tools-icon.jpg" alt="Tools Icon">
+                        <img src="../aetherairlines-framework/img/5-2-2-detail-tools-icon.jpg" alt="Tools Icon">
                     </div>
                     <div class="fd-text">
                         <h3>Aesthetic Engineering</h3>
@@ -272,7 +272,7 @@
 
                 <article class="fd-card">
                     <div class="fd-icon">
-                        <img src="../aetherairlines-framework/img/5-4-detail-serveplate-icon.jpg" alt="Service Icon">
+                        <img src="../aetherairlines-framework/img/5-4-2-detail-serveplate-icon.png" alt="Service Icon">
                     </div>
                     <div class="fd-text">
                         <h3>Human-Centered Service</h3>
@@ -284,36 +284,68 @@
 
 
         <!-- QUOTE -->
-        <section class="quote container">
-            <blockquote>
-                <p>“Elevate your travel. Elevate yourself.”</p>
-                <cite>— Aether Philosophy</cite>
-            </blockquote>
-        </section>
-
-        <!-- BOOKING MADE EASY -->
-        <section id="booking" class="booking container">
-            <div class="booking-card">
-                <h3>Booking Made Easy</h3>
-                <p>From search to takeoff, every step is designed to be effortless.</p>
-                <a class="btn primary" href="#">Book Your Next Journey</a>
-            </div>
-
-            <div class="booking-features">
-                <div class="bf">
-                    <h4>Smart Search</h4>
-                    <p>Find your perfect flight in seconds.</p>
-                </div>
-                <div class="bf">
-                    <h4>Flexible Booking</h4>
-                    <p>Change plans without hassle.</p>
-                </div>
-                <div class="bf">
-                    <h4>Personalized Experience</h4>
-                    <p>Tailored just for you.</p>
-                </div>
+        <section class="quote container" aria-labelledby="aether-quote">
+            <div class="quote-card">
+                <blockquote id="aether-quote" class="q-text">
+                    Elevate your travel.<br />Elevate yourself.
+                </blockquote>
+                <cite class="q-cite">— Aether Philosophy</cite>
             </div>
         </section>
+
+
+        <!-- BOOKING MADE EASY (left column cards with images) -->
+        <section id="booking" class="booking-made container" aria-labelledby="booking-title">
+            <div class="bm-grid">
+                <!-- LEFT: stacked feature cards -->
+                <div class="bm-left">
+                    <article class="bm-card">
+                        <div class="bm-icon">
+                            <img src="../aetherairlines-framework/img/6-1-booking-airplaine-icon.jpg"
+                                alt="Airplane icon" />
+                        </div>
+                        <div class="bm-text">
+                            <h4>Smart Search</h4>
+                            <p>Find your perfect flight in seconds</p>
+                        </div>
+                    </article>
+
+                    <article class="bm-card">
+                        <div class="bm-icon">
+                            <img src="../aetherairlines-framework/img/6-2-booking-calender-icon.jpg"
+                                alt="Calendar icon" />
+                        </div>
+                        <div class="bm-text">
+                            <h4>Flexible Booking</h4>
+                            <p>Change plans without hassle</p>
+                        </div>
+                    </article>
+
+                    <article class="bm-card">
+                        <div class="bm-icon">
+                            <img src="../aetherairlines-framework/img/6-3-booking-checklist-icon.jpg"
+                                alt="Checklist icon" />
+                        </div>
+                        <div class="bm-text">
+                            <h4>Personalized Experience</h4>
+                            <p>Tailored just for you</p>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- RIGHT: title, copy, CTA, decorative mark -->
+                <div class="bm-right">
+                    <h2 id="booking-title">Booking Made Easy</h2>
+                    <p class="bm-lead">From search to takeoff, every step is designed to be effortless.</p>
+                    <a class="btn primary bm-cta" href="#">Book Your Next Journey</a>
+
+                    <!-- Optional decorative mark -->
+                    <img class="bm-mark" src="../aetherairlines-framework/img/6-4-2-booking-bird-logo-medium.png" alt=""
+                        aria-hidden="true" />
+                </div>
+            </div>
+        </section>
+
 
         <!-- JOURNEYS WORTH SHARING -->
         <section class="stories container">

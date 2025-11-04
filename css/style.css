@@ -53,53 +53,80 @@ TABLE OF CONTENTS
 /* DEFINE GLOBAL VARIABLES */
 :root {
 
-    /* DEFINE BASE COLORS */
-    --color-white: #fff;
-    --color-black: #000;
-    --color-black-80: rgb(0 0 0 / .8);
+    /* ===== Aether palette & tokens ===== */
+    --bg: #f8f8f5;
+    /* off-white main background */
+    --card: #ffffff;
+    --text-dark: #0b1220;
+    /* default body/headline color (light backgrounds) */
+    --muted: #6b7482;
+    /* secondary text */
+    --primary: #16204d;
+    /* deep navy */
+    --primary-600: #243c7a;
+    /* lighter navy */
+    --accent: #f4c95d;
+    /* soft gold */
+    --radius-lg: 20px;
+    --container: 1100px;
+    --gap: 1.25rem;
+    --shadow: 0 8px 24px rgba(11, 35, 64, 0.06);
+    --card-shadow: 0 6px 18px rgba(11, 35, 64, 0.05);
+    --teal-acc: #2b89a8;
+    /* small accent (arrows/caret) */
+
+    /* Base colors */
+    --color-white: #ffffff;
+    --color-black: #000000;
+    --color-black-80: rgba(11, 18, 32, .85);
 
     --color-grey-100: rgb(0 0 0 / .05);
     --color-grey-200: rgb(0 0 0 / .2);
 
-    --color-blue-100: #dbeafe;
-    --color-blue-400: #3b82f6;
-    --color-blue-800: #3654a8;
-    --color-blue-900: #294491;
+    /* Navy family */
+    --color-blue-100: #cbd0e3;
+    /* subtle underline/tint */
+    --color-blue-400: #16204d;
+    /* = --primary */
+    --color-blue-800: #243c7a;
+    /* = --primary-600 */
+    --color-blue-900: #081531;
+    /* extra-deep for hero */
 
-    --color-green-100: #d1fae5;
-    --color-green-200: #a0f2be;
-    --color-green-400: #22c55e;
-    --color-green-600: #0E9B42;
-    --color-green-800: #166534;
-    --color-green-900: #004419;
+    /* Semantics */
+    --color-body-background: var(--bg);
+    --color-body-text: var(--text-dark);
+    --color-body-text-dark: var(--text-dark);
 
-    /* DEFINE SEMANTIC COLORS */
-    --color-body-background: var(--color-white);
-    --color-body-text: var(--color-black-80);
-    --color-body-text-dark: var(--color-black);
-
-    --color-primary: var(--color-blue-400);
+    --color-primary: var(--primary);
     --color-primary-dark: var(--color-blue-900);
-    --color-secondary: var(--color-green-400);
+    --color-secondary: var(--accent);
 
-    /* ACTION COLORS */
+    /* Links (light theme defaults) */
     --color-links: var(--color-blue-800);
     --color-links-hover: var(--color-blue-900);
     --color-links-light: var(--color-blue-100);
 
-    /* SECTION SPECIFIC */
+    /* Sections */
     --color-siteheader-background: transparent;
-    --color-siteheader-links: var(--color-blue-800);
-    --color-siteheader-links-hover: var(--color-blue-900);
+    --color-siteheader-links: var(--text-dark);
+    --color-siteheader-links-hover: var(--primary);
     --color-sitefooter-background: var(--color-grey-100);
-    --color-hero-background: var(--color-blue-100);
+    --color-hero-background: var(--color-blue-900);
+    /* #081531 */
 
-    /* BORDERS */
+    /* Contrast tokens when on dark backgrounds (hero/header overlay) */
+    --on-dark-text: #ffffff;
+    --on-dark-text-soft: rgba(255, 255, 255, .85);
+    --on-dark-muted: rgba(255, 255, 255, .75);
+    --on-dark-underline: rgba(255, 255, 255, .5);
+
+    /* Borders */
     --color-border: var(--color-grey-200);
     --border-radius: 5px;
     --border-thickness: .5px;
 
-    /* SIZING UNITS */
+    /* Spacing */
     --unit-2xs: 0.25rem;
     --unit-xs: 0.5rem;
     --unit-s: 1rem;
@@ -110,10 +137,9 @@ TABLE OF CONTENTS
     --unit-3xl: 6rem;
     --container-width: 1100px;
 
-    /* GLOBAL FONTS */
-    --font-body: system-ui, Helvetica, arial, sans-serif;
+    /* Fonts */
+    --font-body: system-ui, Helvetica, Arial, sans-serif;
     --font-headings: Georgia, Times, "Times New Roman", serif;
-
 }
 
 /* SET GLOBAL COLORS */
@@ -127,17 +153,15 @@ h1,
 h2,
 h3 {
     color: var(--color-body-text-dark);
-
-    /* ADD SUPPORT FOR TEXTWRAP BALANCE */
     text-wrap: balance;
 }
 
-/* LIMIT THE NUMBER OF CHARACTERS PER LINE FOR ALL PARAGRAPHS */
+/* Paragraphs */
 p {
     max-inline-size: 66ch;
 }
 
-/* REMOVE WIDOWS FOR ALL PARAGRAPHS AND LIST ITEMS*/
+/* Remove widows for paragraphs and list items */
 p,
 li {
     text-wrap: pretty;
@@ -146,8 +170,6 @@ li {
 /* LINKS */
 a {
     color: var(--color-links);
-
-    /* STYLE THE UNDERLINE */
     text-decoration-color: var(--color-links-light);
     text-underline-offset: .135em;
     text-decoration-thickness: .1em;
@@ -157,7 +179,7 @@ a:hover {
     color: var(--color-links-hover);
 }
 
-/* GLOBAL TYPOHRAPHY */
+/* GLOBAL TYPOGRAPHY */
 body {
     font-family: var(--font-body);
     font-size: 100%;
@@ -172,28 +194,21 @@ h4 {
 }
 
 /* GLOBAL MEDIA */
-
-/* IMAGES (Responsive)
-   Responsive on small screens
-   Do not stretch too large (beyond the orignal)
-   on large screens */
 img {
     max-width: 100%;
     height: auto;
 }
 
-/* GLOBAL HELPERS */
-
+/* HELPERS */
 .text-centered {
     text-align: center;
 }
 
-/* CENTER PARAGRAPHS INSIDE CENTERED PARENTS */
 .text-centered p {
     margin-inline: auto;
 }
 
-/* HIDE CONTENT VISUALLY (BUT KEEP FOR SEO AND ACCESSIBILITY) */
+/* Visually hidden */
 .hide-visually,
 .visually-hidden,
 .screen-reader-only {
@@ -202,14 +217,11 @@ img {
     left: -9999px;
 }
 
-/* GLOBAL RESETS */
-
-/* Remove the default 8pm margin on body */
+/* RESETS */
 body {
     margin: 0;
 }
 
-/* Set all elements to box sizing border box */
 * {
     box-sizing: border-box;
 }
@@ -219,27 +231,21 @@ html {
     scroll-behavior: smooth;
 }
 
-/* ADD OFFSET TO ALL INLINE ANCHOR LINKS */
+/* Offset for hash links */
 :target {
     scroll-margin-top: var(--unit-m);
 }
 
-
 /* ------------------
         LAYOUT 
 --------------------- */
-
-/* CONTAINER */
-
 .container {
     max-width: var(--container-width);
     margin-inline: auto;
     padding-inline: var(--unit-s);
 }
 
-
 /* GRID SYSTEM (12 column) */
-
 .row {
     --grid-gap: var(--unit-s);
 }
@@ -248,16 +254,13 @@ html {
     margin-block-end: var(--grid-gap);
 }
 
-/* NEW width SYNTAX (updated from min-width: 768px)  */
 @media (width >=768px) {
-
     .row {
         display: grid;
         grid-template-columns: repeat(12, 1fr);
         gap: var(--grid-gap);
     }
 
-    /* COMMONLY USED SEMANTIC COLUMNS */
     .one-whole {
         grid-column: auto / span 12;
     }
@@ -282,7 +285,6 @@ html {
         grid-column: auto / span 9;
     }
 
-    /* SWAP (REVERSE COLUMNS) - WORKS ONLY w/ 2 COLUMNS */
     .row.swapped>*:first-child {
         order: 2;
     }
@@ -291,7 +293,6 @@ html {
         order: 1;
     }
 
-    /* CENTERED COLUMNS */
     .one-half.centered {
         grid-column-start: 4;
     }
@@ -300,7 +301,6 @@ html {
         grid-column-start: 3;
     }
 
-    /* 12 COLUMN CLASS-BASED GRID SYSTEM */
     .col-1 {
         grid-column: auto / span 1;
     }
@@ -349,7 +349,6 @@ html {
         grid-column: auto / span 12;
     }
 
-    /* PUSHES */
     .push-1 {
         grid-column-start: 2;
     }
@@ -395,8 +394,7 @@ html {
     }
 }
 
-
-/* FOR DEMO PURPOSES ONLY */
+/* Demo helper */
 .row.demo>* {
     background-color: #eee;
     text-align: center;
@@ -412,21 +410,18 @@ html {
     background-color: var(--color-siteheader-background);
     padding-block: var(--unit-s);
     padding-inline: var(--unit-s);
-
-    /* DISPLAY LOGO ON LEFT AND NAV ON RIGHT */
     display: flex;
     justify-content: space-between;
-    /* align-items: center; */
     gap: var(--unit-s);
     flex-wrap: wrap;
 }
 
-/* REMOVE HEADER PADDING IF IT HAS A CONTAINER */
+/* Remove padding if wrapped in .container */
 .site-header:has(.container) {
     padding-inline: 0;
 }
 
-/* LOGO STYLING */
+/* LOGO */
 .site-header .logo {
     display: flex;
     align-items: center;
@@ -438,7 +433,6 @@ html {
     min-width: 50px;
 }
 
-/* CHRS COYIER'S FIX FOR GAP UNDR INLINE IMAGES AND SVG*/
 .site-header .logo img,
 .site-header .logo svg {
     vertical-align: middle;
@@ -451,10 +445,10 @@ html {
 
 .site-header .logo a {
     text-decoration: none;
+    color: inherit;
 }
 
-/* MAIN SITE NAV */
-
+/* NAV */
 .site-nav ul {
     margin: 0;
     padding: 0;
@@ -471,7 +465,6 @@ html {
     display: block;
     padding: var(--unit-xs);
     padding-block-start: calc(var(--unit-xs) + .1em);
-
 }
 
 .site-nav a:hover {
@@ -482,7 +475,7 @@ html {
     text-decoration-thickness: .1em;
 }
 
-/* SHOW MENU BUTTON ON HIGHER LAYER WHEN NAV IS OPEN */
+/* Menu button */
 .site-nav .menubutton {
     position: relative;
     z-index: 100;
@@ -494,7 +487,7 @@ html {
     background-color: transparent;
 }
 
-/* SMALL SCREENS: SHOW MENU BUTTON, HIDE NAV */
+/* Small screens */
 .site-nav .menubutton {
     display: block;
 }
@@ -503,7 +496,7 @@ html {
     display: none;
 }
 
-/* BIG SCREENS:  HIDE MENU BUTTON, SHOW NAV*/
+/* Large screens */
 @media (width >=768px) {
     .site-nav .menubutton {
         display: none;
@@ -514,9 +507,8 @@ html {
     }
 }
 
-/* SMALL SCREENS ONLY: ENABLE OVERLAY NAV */
+/* Mobile overlay menu */
 @media (width < 768px) {
-
     .site-nav[data-menustate] ul {
         display: grid;
         align-content: center;
@@ -527,7 +519,6 @@ html {
         width: 100%;
         height: 100%;
         background: var(--color-primary);
-        /* transition: translate 0.3s ease-out; */
     }
 
     .site-nav[data-menustate] a {
@@ -536,49 +527,45 @@ html {
 
     .site-nav[data-menustate="open"] ul {
         translate: 0 0;
-        animation: openMenuAnimation 0.3s forwards;
+        animation: openMenuAnimation .3s forwards;
     }
 
     .site-nav[data-menustate="closed"] ul {
         translate: 100% 0;
-        animation: closeMenuAnimation 0.3s forwards;
+        animation: closeMenuAnimation .3s forwards;
     }
 
     @keyframes openMenuAnimation {
         0% {
-            translate: 100% 0;
+            translate: 100% 0
         }
 
         100% {
-            translate: 0 0;
+            translate: 0 0
         }
     }
 
     @keyframes closeMenuAnimation {
         0% {
-            translate: 0 0;
+            translate: 0 0
         }
 
         100% {
-            translate: 100% 0;
+            translate: 100% 0
         }
     }
 
-    /* ENABLE SVG ANIMATION FOR THE NAVICON */
     .site-nav svg.simple-navicon rect {
         transition: all .3s ease-out;
         fill: var(--color-primary);
     }
 
-    /* CHANGE COLOR OF THE SVG NAVICON WHEN MENU IS OPEN */
     .site-nav[data-menustate="open"] svg.simple-navicon rect {
         fill: var(--color-white);
     }
 
-    /* ANIMATE NAVICON LINES TO AN X WHEN OPEN */
     .site-nav .simple-navicon {
         display: block;
-
     }
 
     .site-nav .simple-navicon rect {
@@ -605,22 +592,22 @@ html {
         rotate: -45deg;
         translate: -21% -24%;
     }
-
 }
-
 
 /* SITE MAIN */
 .site-main {
     background-color: transparent;
 }
 
-/* STYLING FOR ALL SECTIONS */
+/* SECTIONS */
 section {
     padding-block: var(--unit-2xl);
 }
 
+/* HERO */
 .hero {
     background-color: var(--color-hero-background);
+    /* deep navy */
     padding-block: var(--unit-3xl);
     padding-inline: var(--unit-s);
 }
@@ -629,6 +616,21 @@ section {
     padding-inline: 0;
 }
 
+/* FORCE HERO TEXT WHITE FOR READABILITY */
+.hero,
+.hero :is(h1, h2, h3, h4, p, li, small, strong, em, span) {
+    color: var(--on-dark-text);
+}
+
+.hero a {
+    color: var(--on-dark-text);
+    text-decoration-color: var(--on-dark-underline);
+}
+
+.hero a:hover {
+    color: var(--on-dark-text);
+    text-decoration-color: rgba(255, 255, 255, .7);
+}
 
 /* SITE FOOTER */
 .site-footer {
@@ -637,7 +639,6 @@ section {
     padding-inline: var(--unit-s);
 }
 
-/* REMOVE FOOTER PADDING IF IT HAS A CONTAINER */
 .site-footer:has(.container) {
     padding-inline: 0;
 }
@@ -663,6 +664,18 @@ section {
     color: var(--color-white);
 }
 
+/* On dark hero, lighten button by default */
+.hero .button {
+    background-color: rgba(255, 255, 255, .2);
+    color: var(--on-dark-text);
+    border: 1px solid rgba(255, 255, 255, .6);
+}
+
+.hero .button:hover {
+    background-color: rgba(255, 255, 255, .8);
+    color: #333;
+}
+
 /* CARDS */
 .card {
     border: var(--border-thickness) solid var(--color-border);
@@ -685,7 +698,7 @@ hr {
     margin: var(--unit-xl) 0;
 }
 
-/* Code Blocks */
+/* Code blocks */
 pre:has(code) {
     background-color: var(--color-black);
     color: var(--color-white);
@@ -694,17 +707,14 @@ pre:has(code) {
     white-space: pre-wrap;
 }
 
-/* SWIPER CSS STYLING */
-
+/* SWIPER */
 .swiper {
     padding-block-end: 2rem;
     text-align: center;
 }
 
-
 .swiper-wrapper {}
 
-/* MOVE SWIPER ARROWS OUTSIDE OF SWIPER */
 .swiper-button-prev,
 .swiper-button-next {
     background-color: var(--color-white);
@@ -712,12 +722,10 @@ pre:has(code) {
     border-radius: 100%;
 }
 
-/* TEMP WAY TO MOVE ARROWS OUTSIDE OF SWIPER */
 .swiper {
     padding-inline: 50px;
 }
 
-/* TEMP SOLUTION COVERS THE CONTENT WITH A WHITE BG, FIX IN THE FUTURE IF THERE IS TIME */
 .swiper-button-prev {
     translate: -4px -50%;
     background-color: white;
@@ -736,7 +744,6 @@ pre:has(code) {
     right: 0;
 }
 
-/* REMOVE COLOR CARD WIDTHS AND HEIGHTS WHEN INSIDE A SWIPER SLIDE */
 .swiper-slide .card {
     display: block;
 }
@@ -750,24 +757,23 @@ pre:has(code) {
     CUSTOM SITE STYLING 
 --------------------- */
 
-/* PUSH THE FOOTER TO THE BOTTOM BY DEFAULT */
+/* Push footer to bottom */
 body {
     display: grid;
     grid-template-rows: auto 1fr auto;
     min-height: 100svh;
 }
 
-/* TO FIX OVERFLOW WORD BREAK */
 body>* {
     min-width: 0;
 }
 
-/* NUDGE THE NAV ITEMS DOWN TO ALIGN WITH IMAGE LOGO TEXT */
+/* Nav alignment */
 .site-header .site-nav a {
     padding-block-start: calc(var(--unit-xs) + .35em);
 }
 
-/* RENDER HEADER ON TOP OF HERO */
+/* Header on top of hero */
 .site-header.on-top-of-hero {
     position: absolute;
     width: 100%;
@@ -777,22 +783,58 @@ body>* {
     padding-block-start: calc(var(--unit-3xl) + var(--unit-xl));
 }
 
-/* CUSTOM HERO STYLING */
+/* ===== Invert header/nav when over dark backgrounds ===== */
+/* Add class `.is-on-dark` (or keep `.on-top-of-hero is-on-dark`) to switch colors */
+.site-header.is-on-dark {
+    --color-siteheader-links: var(--on-dark-text);
+    --color-siteheader-links-hover: var(--on-dark-text);
+}
+
+.site-header.is-on-dark .logo h1,
+.site-header.is-on-dark .logo a {
+    color: var(--on-dark-text);
+}
+
+.site-header.is-on-dark .site-nav a {
+    color: var(--on-dark-text);
+    text-decoration-color: var(--on-dark-underline);
+}
+
+.site-header.is-on-dark .site-nav a:hover {
+    color: var(--on-dark-text);
+    text-decoration-color: rgba(255, 255, 255, .7);
+}
+
+/* HERO typography */
 .hero h1 {
     font-size: clamp(2.5em, 4vw, 4em);
     margin-block: 0;
     overflow-wrap: break-word;
+    color: var(--on-dark-text);
 }
 
 .hero p {
     text-wrap: balance;
+    color: var(--on-dark-text-soft);
 }
 
-/* CUSTOM PAGE LAYOUT - 2 COLUMNS: ASIDE + MAIN CONTENT */
+/* Optional: if you also use a .navbar elsewhere, support a dark variant */
+.navbar.is-on-dark,
+.navbar.is-on-dark * {
+    color: var(--on-dark-text);
+}
 
+.navbar.is-on-dark a {
+    color: var(--on-dark-text);
+    text-decoration-color: var(--on-dark-underline);
+}
 
+.navbar.is-on-dark a:hover {
+    text-decoration-color: rgba(255, 255, 255, .7);
+}
+
+/* Two-column page layout */
 @media (width >=768px) {
-
     .pagelayout-wrapper-twocolumn {
         display: flex;
         gap: var(--unit-l);
@@ -805,11 +847,9 @@ body>* {
     .pagesection-maincontent {
         width: 75%;
     }
-
 }
 
-/* STICKYBOX */
-/* NOTE NEEDED ON SMALL SCREENS, SO IT IS SET INSIDE OF A MEDIA QUERY SO IT ALLOWS THE OVERLAY MENU TO RENDER ON TOP ON SMALL SCREENS */
+/* Stickybox */
 @media (width >=768px) {
     .stickybox {
         position: sticky;
@@ -818,7 +858,6 @@ body>* {
 }
 
 /* NMA TYPE BLOCK */
-
 .nma-eyebrow {
     font-size: .875rem;
     font-weight: bold;
@@ -831,6 +870,7 @@ body>* {
     font-size: 3rem;
     margin-block: var(--unit-s);
     line-height: 1.1;
+    color: inherit;
 }
 
 .nma-subheadline {
@@ -838,17 +878,14 @@ body>* {
     font-weight: 400;
     font-style: italic;
     margin-block: var(--unit-xs);
-    opacity: .7;
+    opacity: .85;
     line-height: 1.2;
+    color: var(--on-dark-text-soft);
 }
-
 
 /* ------------------
         ANIMATIONS 
 --------------------- */
-
-/* REGULAR ON PAGE LOAD ANIMATIONS */
-
 .slide-from-top-and-fade-in {
     animation-name: slide-from-top-and-fade-in;
     animation-duration: 1s;
@@ -869,7 +906,6 @@ body>* {
         translate: 0 0;
     }
 }
-
 
 .slide-from-left-and-fade-in {
     animation-name: slide-from-left-and-fade-in;
@@ -897,54 +933,38 @@ body>* {
 }
 
 .delay-1 {
-    animation-delay: 0.1s;
+    animation-delay: .1s;
 }
 
 .delay-2 {
-    animation-delay: 0.2s;
+    animation-delay: .2s;
 }
 
 .delay-3 {
-    animation-delay: 0.3s;
+    animation-delay: .3s;
 }
 
 .delay-4 {
-    animation-delay: 0.5s;
+    animation-delay: .5s;
 }
 
 .delay-5 {
-    animation-delay: 0.7s;
+    animation-delay: .7s;
 }
 
 .delay-6 {
-    animation-delay: 0.9s;
+    animation-delay: .9s;
 }
 
-
-/* SCROLL-TRIGGERED ANIMATION */
-
-/* FIX SCROLL BAR ON ALL SCROLL ANIMATION SECTIONS */
+/* Scroll-triggered */
 section:has(.observe-me) {
     overflow-x: clip;
 }
 
-/* on scroll slide-in from the left */
 .observe-me.onscroll-slide-in-from-left {
-
-    /* Simple way */
     opacity: 0;
     translate: -20px 0;
     transition: all .5s ease-out .2s;
-
-    /* Complicated way */
-    /* --duration: .5s;
-    --delay: .2s;
-    opacity: 0;
-    translate: -20px 0;
-    transition: 
-        translate var(--duration) ease-out var(--delay), 
-        opacity var(--duration) linear var(--delay); */
-
 }
 
 .observe-me[data-viewstate="active"].onscroll-slide-in-from-left {
@@ -952,7 +972,6 @@ section:has(.observe-me) {
     translate: 0 0;
 }
 
-/* on scroll slide-in from the right */
 .observe-me.onscroll-slide-in-from-right {
     opacity: 0;
     translate: 20px 0;
@@ -969,25 +988,25 @@ section:has(.observe-me) {
 }
 
 .observe-me.delay-1 {
-    transition-delay: 0.1s;
+    transition-delay: .1s;
 }
 
 .observe-me.delay-2 {
-    transition-delay: 0.2s;
+    transition-delay: .2s;
 }
 
 .observe-me.delay-3 {
-    transition-delay: 0.3s;
+    transition-delay: .3s;
 }
 
 .observe-me.delay-4 {
-    transition-delay: 0.5s;
+    transition-delay: .5s;
 }
 
 .observe-me.delay-5 {
-    transition-delay: 0.7s;
+    transition-delay: .7s;
 }
 
 .observe-me.delay-6 {
-    transition-delay: 0.9s;
+    transition-delay: .9s;
 }
